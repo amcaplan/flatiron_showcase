@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Live app url:</strong>
+  <%= @project.live_app_url %>
+</p>
+
+<p>
+  <strong>Screenshot path:</strong>
+  <%= @project.screenshot_path %>
+</p>
+
+<p>
+  <strong>Brief description:</strong>
+  <%= @project.brief_description %>
+</p>
+
+<p>
+  <strong>Longer description:</strong>
+  <%= @project.longer_description %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
