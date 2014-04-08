@@ -4,8 +4,6 @@ class Authorization < ActiveRecord::Base
   def self.user_from_omniauth(auth)
     authorization = self.find_or_initialize_by(github_uid: auth.uid)
     if auth.provider == "github"
-      authorization.organizations_url = auth.extra.raw_info.organizations_url
-      authorization.repos_url = auth.extra.raw_info.repos_url
       authorization.token = auth.credentials.token
     end
     

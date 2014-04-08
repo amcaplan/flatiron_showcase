@@ -11,12 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408180428) do
+ActiveRecord::Schema.define(version: 20140408224539) do
 
   create_table "authorizations", force: true do |t|
     t.string   "github_uid"
-    t.string   "repos_url"
-    t.string   "organizations_url"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
