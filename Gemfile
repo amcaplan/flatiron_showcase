@@ -55,3 +55,9 @@ group :production do
 end
 
 gem "bootstrap-sass", "~> 3.1.1"
+
+gem "octokit", "~> 2.0"
+
+gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
+
+gem "figaro", github: 'laserlemon/figaro'
