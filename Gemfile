@@ -61,3 +61,5 @@ gem "octokit", "~> 2.0"
 gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
 
 gem "figaro", github: 'laserlemon/figaro'
+
+gem 'rails-erd'
