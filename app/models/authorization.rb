@@ -24,8 +24,15 @@ class Authorization < ActiveRecord::Base
     user
   end
 
+  def client
+    @client ||= Octokit::Client.new(access_token: self.token)
+  end
+
   def github_repos
-    client = Octokit::Client.new(access_token: self.token)
     client.repositories
+  end
+
+  def organizations
+    client.organizations
   end
 end
