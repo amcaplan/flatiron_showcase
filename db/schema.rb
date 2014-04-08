@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408152821) do
+ActiveRecord::Schema.define(version: 20140408180428) do
 
   create_table "authorizations", force: true do |t|
     t.string   "github_uid"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140408152821) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token"
   end
 
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id"
