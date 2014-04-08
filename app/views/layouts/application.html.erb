@@ -8,8 +8,8 @@
   <%= analytics_init if Rails.env.production? %>
 </head>
 <body>
-  <% if current_user %>
-  Hello, <%= current_user.name %>! <a href="/signout">Log Out</a>
+<% if current_user %>
+  Hello, <%= current_user.name %>! <a id="logout" href="/signout">Log Out</a>
 <% else %>
   <a href="/auth/github">Log in with GitHub!</a>
 <% end %>

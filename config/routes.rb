@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :projects
 
-  resources :users, except: [:new, :index, :create]
+  resources :users, except: [:new, :create]
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
   match 'auth/failure', to: redirect('/'), via: [:get, :post]

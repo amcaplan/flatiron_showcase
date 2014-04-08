@@ -80,7 +80,7 @@ class ProjectsController < ApplicationController
     def check_user_authorized
       if !current_user
         redirect_to root_url, notice: 'Please log in using GitHub first.'
-      elsif !@project.users.include?(current_user)
+      elsif @project && !@project.users.include?(current_user)
         redirect_to @project, notice: 'You are not authorized to make changes to this project.'
       end
     end

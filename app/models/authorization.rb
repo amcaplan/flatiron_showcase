@@ -21,6 +21,13 @@ class Authorization < ActiveRecord::Base
     authorization.user = user
     authorization.save!
 
+    # Verify that the user is in the flatiron-school-students organization
+    if !authorization.organizations.map(&:id).include?(6207995)
+      user.destroy
+      authorization.destroy
+      return false
+    end
+
     user
   end
 
