@@ -1,9 +1,9 @@
-//Scope
-//1. Generate list of projects that user worked based on Github repos 
-//2. User select the repo to include user's indivisual flatiron showpage
-//3. Hide select options (Make button available to select more?)
-//4. Based on user's choice, generate list of github projects
-// var $projects = $('<div id="projects">selected projects<div>')
+//= require FlatPoint-js/rs-plugin/pluginsources/jquery.themepunch.revolution
+//= require FlatPoint-js/carouFredSel-6.2.1/jquery.carouFredSel-6.2.1
+//= require FlatPoint-js/prettyPhoto/js/jquery.prettyPhoto
+//= require FlatPoint-js/UItoTop/js/easing
+//= require FlatPoint-js/UItoTop/js/jquery.ui.totop
+//= require FlatPoint-js/isotope-site/js/jquery.isotope.min
 
-//$("body").html("<%= escape_javascript(render(:partial => '')) %>");
 $("#github_projects").hide();
+
