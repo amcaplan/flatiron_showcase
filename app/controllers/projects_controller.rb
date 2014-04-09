@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
     end
     
     @project = Project.new
-    @page_name = "New Project"
+    @page_name = "Add New Projects"
   end
 
   # GET /projects/1/edit
@@ -59,6 +59,7 @@ class ProjectsController < ApplicationController
    # raise params.inspect
     respond_to do |format|
       if @projects.all?(&:save)
+        @projects.each {|project| project.users << current_user} # FIXME query github to get all collaborators for the project
         format.html { redirect_to current_user, notice: 'Projects were successfully created.' }
        # format.json { render action: 'show', status: :created, location: @project }
       else

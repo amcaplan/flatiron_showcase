@@ -23,6 +23,11 @@
                     <li>
                         <%= link_to "Projects", projects_path %>
                     </li>
+                    <% if current_user %>
+                    <li>
+                        <%= link_to "Add Your Projects", new_project_path %>
+                    </li>
+                    <% end %>
                     <li>
                         <%= link_to "Students", users_path %>
                     </li>
