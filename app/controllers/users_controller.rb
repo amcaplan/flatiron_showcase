@@ -5,16 +5,19 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
+    @page_name = "All Students"
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @page_name = @user.name
   end
 
   # GET /users/1/edit
   def edit
     # input twitter handle, LinkedIn url
+    @page_name = "Editing #{@user.name}"
   end
 
   # PATCH/PUT /users/1

@@ -7,9 +7,11 @@
             <!-- /.page-title -->
             <div class="col-xs-6 hidden-xs breadcrumb-wrapper">
                 <ol class="breadcrumb pull-right">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li class="active">Portfolio 3 Columns</li>
+                    <li><a href="/">Home</a></li>
+                    <% if @controller %>
+                        <li><%= link_to @controller,  %></a></li>
+                    <% end %>
+                    <li class="active"><%= @page_name %></li>
                 </ol>
             </div>
         </div>

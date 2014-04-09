@@ -5,6 +5,7 @@ class Authorization < ActiveRecord::Base
     authorization = self.find_or_initialize_by(github_uid: auth.uid)
     if auth.provider == "github"
       authorization.token = auth.credentials.token
+      authorization.github_login = auth.login
     end
     
     user = authorization.user || User.new
@@ -33,7 +34,7 @@ class Authorization < ActiveRecord::Base
     @client ||= Octokit::Client.new(access_token: self.token)
   end
 
-  def github_repos
+  def repos
     client.repositories
   end
 

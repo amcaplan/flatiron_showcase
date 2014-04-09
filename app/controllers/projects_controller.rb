@@ -6,11 +6,13 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
+    @page_name = "All Projects"
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @page_name = @project.name
   end
 
   # GET /projects/new
@@ -33,11 +35,14 @@ class ProjectsController < ApplicationController
       end
 
     end
-
+    
+    @project = Project.new
+    @page_name = "New Project"
   end
 
   # GET /projects/1/edit
   def edit
+    @page_name = "Edit #{@project.name}"
   end
 
   # POST /projects
@@ -86,10 +91,6 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
-  end
-
-  def about
-    render 'about'
   end
 
   private
