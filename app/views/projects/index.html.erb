@@ -1,4 +1,4 @@
-<p id="notice"><span class="bg-danger text-warning"><%= notice %></span></p>
+<!-- <p id="notice"><span class="bg-danger text-warning"><%= notice %></span></p>
 <h1>Listing projects</h1>
 
 <table>
@@ -30,8 +30,8 @@
 </table>
 
 <br>
+<%= link_to 'Select projects from Github Repos', new_project_path %> -->
 
-<%= link_to 'Select projects from Github Repos', new_project_path %>
 <section id="portfolio-2" class="section colored-wrapper">
     <div class="container">
         <ul class="portfolio-filter nav nav-pills">
@@ -45,21 +45,23 @@
         <!-- /.portfolio-filter -->
         <div class="row">
             <div id="isotope-portfolio-container">
+                <% @projects.each do |project| %>
                 <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper artwork creative">
                     <div class="portfolio-item">
                         <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (1).jpg" class="img-responsive" alt="1st Portfolio Thumb">
+                            <img src="<%= project.screenshot_path %>", class="img-responsive">
                             <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (1).jpg" rel="prettyPhoto[pp_gal]"  class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
+                            <a href="<%= project.screenshot_path %>" rel="prettyPhoto[pp_gal]"  class="portfolio-zoom"><i class="icon-eye-open"></i></a>
+                            <%= link_to raw("<i class=\"icon-link\"></i>"), project, class: "portfolio-link" %>
                         </div>
                         <div class="portfolio-content">
-                            <h5>1st Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
+                            <h5><%= project.name %></h5>
+                            <p><%= project.brief_description %></p>
                         </div>
                     </div>
                 </div>
                 <!-- /.portfolio-item-wrapper -->
+                <% end %>
                 <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper nature outside">
                     <div class="portfolio-item">
                         <div class="portfolio-thumb">
