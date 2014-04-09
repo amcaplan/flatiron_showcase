@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   end
 
   def repos
-    self.github_auth.github_repos
+    self.github_auth.repos
   end
 
   def organizations
