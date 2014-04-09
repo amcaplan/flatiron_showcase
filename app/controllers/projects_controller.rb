@@ -19,7 +19,21 @@ class ProjectsController < ApplicationController
     # SELECT REPOS FROM GITHUB (EXCLUDE ALREADY ADDED PROJECTS)
     # ENTER INFORMATION ABOUT EACH PROJECT (name, url, descriptions(optional))
     # SUBMIT!
-    @project = Project.new
+
+    @github_projects = current_user.repos
+
+    if params[:projects]
+      project_ids = params[:projects].map(&:to_i)
+      @select_projects = @github_projects.select do |project|
+        project_ids.include?(project.id) 
+      end
+
+      @select_projects.map! do |project|
+        Project.new(name: project.name, github_id: project.id, display_name: project.name)
+      end
+
+    end
+
   end
 
   # GET /projects/1/edit
@@ -33,15 +47,18 @@ class ProjectsController < ApplicationController
     # 1. GET SCREENSHOT
     # 2. ADD OTHER COLLABORATORS (?)
     # 3. SHOW PROJECT PAGE (redirect)
-    # @project = Project.new(project_params)
-
+    @projects = params[:projects].map do |project_hash|
+      Project.new(project_params(project_hash))
+    end
+    
+   # raise params.inspect
     respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @project }
+      if @projects.all?(&:save)
+        format.html { redirect_to current_user, notice: 'Projects were successfully created.' }
+       # format.json { render action: 'show', status: :created, location: @project }
       else
         format.html { render action: 'new' }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.json { render json: @projects.map(&:errors).join, status: :unprocessable_entity }
       end
     end
   end
@@ -86,7 +103,7 @@ class ProjectsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project).permit(:name, :live_app_url, :screenshot_path, :brief_description, :longer_description)
+    def project_params(project)
+      project.permit(:name, :github_id, :live_app_url, :display_name )
     end
 end

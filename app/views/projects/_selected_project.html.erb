@@ -1,0 +1,17 @@
+<%= form_tag "/projects" do %>
+  <% @select_projects.each do |project| %>
+    <h2>Project: <%= project.name %></h2>
+    <%= fields_for project do |f| %>
+      <%= f.hidden_field(:name, {name: "projects[][name]"} ) %>
+      <%= f.hidden_field(:github_id, {name: "projects[][github_id]"} ) %>
+      <%= f.label :display_name %>:
+      <%= f.text_field :display_name, {name: "projects[][display_name]"} %><br />
+      <%= f.label :live_app_url %>:
+      <%= f.text_field :live_app_url, {name: "projects[][live_app_url]"} %><br />
+      
+    <% end %>
+   <% end %>
+  <%= submit_tag "update" %>
+<% end %>
+
+
