@@ -10,8 +10,8 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require FlatPoint-js/jquery-2.0.3
+//= require FlatPoint-js/jquery-migrate-1.2.1
 //= require jquery_ujs
 //= require bootstrap
-//= require_tree ../../../vendor/assets/javascripts/.
-//= require_tree .
+//= require_directory ./
