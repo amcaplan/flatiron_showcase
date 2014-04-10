@@ -59,13 +59,13 @@
                         <li class="clearfix">
                             <h6>Live App URL:</h6>
                             <div class="project-terms">
-                                <%= @project.live_app_url %>
+                                <%= link_to @project.live_app_url, "http://#{@project.live_app_url}" %>
                             </div>
                         </li>
                         <li class="clearfix">
-                            <h6>Other Contributors:</h6>
+                            <h6>Contributors:</h6>
                             <div class="project-terms">
-                                <%= raw @project.other_collaborators(current_user).map { |user| %>
+                                <%= raw @project.users.map { |user| %>
                                     <% link_to(user.name, user) %>
                                 <% }.join(", ") %>
                             </div>

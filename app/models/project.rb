@@ -43,7 +43,8 @@ class Project < ActiveRecord::Base
   end
 
   def tags #TODO make skill tags!
-    %w{HTML5 CSS3 JavaScript jQuery Twitter\ Bootstrap}
+    %w{artwork nature}
+    #%w{HTML5 CSS3 JavaScript jQuery Twitter\ Bootstrap}
   end
 
   def other_collaborators(user)
