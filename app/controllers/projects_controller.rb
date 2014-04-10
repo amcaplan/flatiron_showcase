@@ -23,6 +23,10 @@ class ProjectsController < ApplicationController
     # SUBMIT!
 
     @github_projects = current_user.repos
+    existing_projects = Project.pluck(:github_id).map(&:to_i)
+    @github_projects.reject! do |project|
+      existing_projects.include?(project.id)
+    end
 
     if params[:projects]
       project_ids = params[:projects].map(&:to_i)
@@ -58,8 +62,11 @@ class ProjectsController < ApplicationController
 
     #call method to take a screenshot
     @projects.each do |project|
-      project.screenshot_path = Project.take_app_screenshot!(project)
-      #project.screenshot_path = @screenshot_path
+      begin
+        project.take_app_screenshot!
+      rescue
+        project.add_no_screenshot_available_image
+      end
     end
     
    # raise params.inspect
