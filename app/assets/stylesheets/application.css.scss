@@ -10,8 +10,16 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require bootstrap
  *= require_self
- *= require_tree .
+ *= require FlatPoint-css/UItoTop/css/ui.totop
+ *= require FlatPoint-css/prettyPhoto/css/prettyPhoto
+ *= require FlatPoint-css/rs-plugin/css/settings
+ *= require FlatPoint-css/stylesheet
+ *= require FlatPoint-css/skins
+ *= require FlatPoint-css/font-awesome/css/font-awesome
+ *= require FlatPoint-css/font-awesome/css/font-awesome-ie7
+ 
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
  //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
@@ -20,8 +28,8 @@
 @import "bootstrap";
 /* Some Style from the Bootstrap Default Theme */
 body {
-  padding-top: 70px;
-  padding-bottom: 30px;
+  /*padding-top: 70px;
+  padding-bottom: 30px;*/
 }
 
 .theme-dropdown .dropdown-menu {

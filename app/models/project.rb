@@ -29,4 +29,33 @@ class Project < ActiveRecord::Base
   def add_no_screenshot_available_image
     # TODO Add this method
   end
+
+  def screenshots
+    [self.screenshot_path, self.screenshot_path]
+  end
+
+  def first?
+    @first ||= self == Project.first
+  end
+
+  def last?
+    @last ||= self == Project.last
+  end
+
+  def tags #TODO make skill tags!
+    %w{HTML5 CSS3 JavaScript jQuery Twitter\ Bootstrap}
+  end
+
+  def other_collaborators(user)
+    [user]
+    # FIXME will be users.where.not(id: user.id)
+  end
+
+  def next_project
+    Project.where("id > ?", id).order(id: :asc).first
+  end
+
+  def previous_project
+    Project.where("id < ?", id).order(id: :asc).last
+  end
 end

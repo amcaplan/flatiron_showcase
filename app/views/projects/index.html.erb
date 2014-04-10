@@ -55,13 +55,15 @@
                             <%= link_to raw("<i class=\"icon-link\"></i>"), project, class: "portfolio-link" %>
                         </div>
                         <div class="portfolio-content">
-                            <h5><%= project.name %></h5>
+                            <h5><%= link_to project.name, project %></h5>
                             <p><%= project.brief_description %></p>
                         </div>
                     </div>
                 </div>
                 <!-- /.portfolio-item-wrapper -->
                 <% end %>
+                <% #FIXME temporary filler text %>
+                <% 10.times do %>
                 <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper nature outside">
                     <div class="portfolio-item">
                         <div class="portfolio-thumb">
@@ -77,156 +79,7 @@
                     </div>
                 </div>
                 <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper photography artwork">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (2).jpg" class="img-responsive" alt="3rd Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (2).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>3rd Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper creative nature">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (4).jpg" class="img-responsive" alt="4th Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (4).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>4th Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper nature">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (5).jpg" class="img-responsive" alt="5th Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (5).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>5th Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper artwork creative">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (3).jpg" class="img-responsive" alt="6th Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (3).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>6th Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper nature outside">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (7).jpg" class="img-responsive" alt="7th Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (7).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>7th Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper photography artwork">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (6).jpg" class="img-responsive" alt="8th Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (6).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>8th Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper creative nature">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (8).jpg" class="img-responsive" alt="9th Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (8).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>9th Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper nature">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (10).jpg" class="img-responsive" alt="10th Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (10).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>10th Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper artwork creative">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (9).jpg" class="img-responsive" alt="11th Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (9).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>11th Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper nature outside">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (11).jpg" class="img-responsive" alt="12th Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (11).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>12th Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
+                <% end %>
             </div>
             <!-- /.isotope-portfolio-container -->
         </div>

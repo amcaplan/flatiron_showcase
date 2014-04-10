@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
 
     def set_controller_name
       @controller = controller_name.titleize if controller_name != "StaticPagesController"
-      @controller = "Students" if @controller == "Users"
+      @controller_path = "/#{@controller.downcase}"
+      if @controller == "Users"
+        @controller = "Students"
+        @controller_path = "/users"
+      end
     end
 end

@@ -1,29 +1,169 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
-
-<p>
-  <strong>Live app url:</strong>
-  <%= @project.live_app_url %>
-</p>
-
-<p>
-  <strong>Screenshot path:</strong>
-  <%= @project.screenshot_path %>
-</p>
-
-<p>
-  <strong>Brief description:</strong>
-  <%= @project.brief_description %>
-</p>
-
-<p>
-  <strong>Longer description:</strong>
-  <%= @project.longer_description %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<section id="item-content-wrapper" class="section">
+    <div class="container">
+        <div class="portfolio-navigation wrapper-1">
+            <ul id="next-previous-links" class="portfolio-navigation-list clearfix">
+                <li>
+                <% unless @project.first? %>
+                    <%= link_to raw('<i class="icon-long-arrow-left"></i> Prev'), @project.previous_project %>
+                <% end %>
+                </li>
+              <% unless @project.last? %>
+                <li>
+                    <%= link_to raw('Next <i class="icon-long-arrow-right"></i>'), @project.next_project %>
+                </li>
+              <% end %>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-8 item-description">
+                <div class="portfolio-thumb wrapper-1">
+                    <div id="carousel-example-generic" class="carousel slide">
+                        <% if @project.screenshots.size > 1 %>
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <% (0...@project.screenshots.size).each do |index| %>
+                              <li data-target="#carousel-example-generic" data-slide-to="<%= index %>" class="active"></li>
+                            <% end %>
+                        </ol>
+                        <% end %>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <% @project.screenshots.each_with_index do |url, index| %>
+                            <div class="item <%= "active" if index == 0 %>">
+                                <img src="../<%= url %>" class="img-responsive" alt="Carousel Image">
+                            </div>
+                            <% end %>
+                        </div>
+                        <% if @project.screenshots.size > 1 %>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 item-details">
+                <div class="wrapper-1">
+                    <h5 class="subpage-title">Project Details</h5>
+                    <ul class="project-details-list">
+                        <li class="clearfix">
+                            <h6>Name:</h6>
+                            <div class="project-terms">
+                                <%= @project.display_name %>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <h6>Live App URL:</h6>
+                            <div class="project-terms">
+                                <%= @project.live_app_url %>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <h6>Other Contributors:</h6>
+                            <div class="project-terms">
+                                <%= raw @project.other_collaborators(current_user).map { |user| %>
+                                    <% link_to(user.name, user) %>
+                                <% }.join(", ") %>
+                            </div>
+                        </li>
+                        <% unless @project.tags.empty? %>
+                        <li class="clearfix">
+                            <h6>Skills:</h6>
+                            <div class="project-terms">
+                                <%= @project.tags.join(", ") %>
+                            </div>
+                        </li>
+                        <% end %>
+                        <li class="clearfix">
+                            <h6>Browse the Code:</h6>
+                            <div class="project-terms">
+                                <%= link_to @project %>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 item-description wrapper-1">
+                <h5 class="subpage-title">Project Description</h5>
+                <%= @project.longer_description %>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /#item-content-wrapper -->
+<section id="releted-items" class="section colored-wrapper">
+    <div class="container wrapper-2">
+        <h5 class="subpage-title">
+            <span>Other Recent Projects</span>
+            <!-- Controls -->
+            <span id="portfolio-next" class="next black"><i class="icon-angle-right"></i></span>
+            <span id="portfolio-prev" class="prev black"><i class="icon-angle-left"></i></span>
+        </h5>
+        <div class="row">
+            <div id="caroufredsel-portfolio-container">
+                <% Project.last(5).each do |project| %>
+                    <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper">
+                        <div class="portfolio-item">
+                            <div class="portfolio-thumb">
+                                <img src="../<%= project.screenshot_path %>" class="img-responsive" alt="<%= project.display_name %>">
+                                <div class="image-overlay"></div>
+                                <a href="../<%= project.screenshot_path %>" rel="prettyPhoto[pp_gal]"  class="portfolio-zoom"><i class="icon-eye-open"></i></a>
+                                <%= link_to raw('<i class="icon-link"></i></a>'), project, class: "portfolio-link" %>
+                            </div>
+                            <div class="portfolio-content">
+                                <h5><%= project.display_name %></h5>
+                                <p><%= project.brief_description %></p>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+            <!-- /.caroufredsel-portfolio-container -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /#releted-items -->
+<!-- page-specific javascript -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        // PrettyPhoto
+        $("a[rel^='prettyPhoto']").prettyPhoto({
+            theme: 'light_square',
+            social_tools: false
+        });
+    });
+    // jQuery CarouFredSel
+    var caroufredsel = function () {
+        $('#caroufredsel-portfolio-container').carouFredSel({
+            responsive: true,
+            scroll: 1,
+            circular: false,
+            infinite: false,
+            items: {
+                visible: {
+                    min: 1,
+                    max: 3
+                }
+            },
+            prev: '#portfolio-prev',
+            next: '#portfolio-next',
+            auto: {
+                play: false
+            }
+        });
+    };
+    $(window).load(function () {
+        caroufredsel();
+    });
+    $(window).resize(function () {
+        caroufredsel();
+    });         
+</script>
