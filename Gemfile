@@ -36,7 +36,7 @@ gem 'spring',        group: :development
 
 group :test, :development do
   gem "rspec-rails"
-  gem "capybara"
+  gem "capybara", "~> 2.1.0"
   gem "selenium-webdriver"
   gem "better_errors"
   gem "sprockets_better_errors"
@@ -63,3 +63,5 @@ gem 'omniauth-github', :git => 'git://github.com/intridea/omniauth-github.git'
 gem "figaro", github: 'laserlemon/figaro'
 
 gem 'rails-erd'
+
+gem "webshot"

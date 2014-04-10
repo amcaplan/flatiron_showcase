@@ -55,6 +55,12 @@ class ProjectsController < ApplicationController
     @projects = params[:projects].map do |project_hash|
       Project.new(project_params(project_hash))
     end
+
+    #call method to take a screenshot
+    @projects.each do |project|
+      project.screenshot_path = Project.take_app_screenshot!(project)
+      #project.screenshot_path = @screenshot_path
+    end
     
    # raise params.inspect
     respond_to do |format|

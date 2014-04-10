@@ -17,4 +17,6 @@
 
 # Ignore application configuration
 /config/application.yml
-brainstorming.md
+
+# Ignore image files
+/public/assets/project-images/*
