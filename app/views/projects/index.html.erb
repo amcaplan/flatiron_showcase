@@ -36,17 +36,15 @@
     <div class="container">
         <ul class="portfolio-filter nav nav-pills">
             <li class="active"><a href="#" data-filter="*">All</a></li>
-            <li><a href="#" data-filter=".artwork">Artwork</a></li>
-            <li><a href="#" data-filter=".creative">Creative</a></li>
-            <li><a href="#" data-filter=".nature">Nature</a></li>
-            <li><a href="#" data-filter=".outside">Outside</a></li>
-            <li><a href="#" data-filter=".photography">Photography</a></li>
+            <% AppType.all.each do |app_type| %>
+            <li><a href="#" data-filter=".<%= app_type.slug %>"><%= app_type.name %></a></li>
+            <% end %>
         </ul>
         <!-- /.portfolio-filter -->
         <div class="row">
             <div id="isotope-portfolio-container">
                 <% @projects.each do |project| %>
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper <%= project.tags.join(' ') %>">
+                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper <%= project.app_types.map(&:slug).join(' ') %>">
                     <div class="portfolio-item">
                         <div class="portfolio-thumb">
                             <img src="<%= raw("#{project.screenshot_path}_medium.png") %>" class="img-responsive">

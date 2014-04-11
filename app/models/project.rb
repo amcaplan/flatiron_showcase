@@ -43,11 +43,6 @@ class Project < ActiveRecord::Base
     @last ||= self == Project.last
   end
 
-  def tags #TODO make skill tags!
-    %w{artwork nature}
-    #%w{HTML5 CSS3 JavaScript jQuery Twitter\ Bootstrap}
-  end
-
   def next_project
     Project.where("id > ?", id).order(id: :asc).first
   end

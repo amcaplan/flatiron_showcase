@@ -70,11 +70,19 @@
                                 <% }.join(", ") %>
                             </div>
                         </li>
-                        <% unless @project.tags.empty? %>
+                        <% if @project.technologies && !@project.technologies.empty? %>
                         <li class="clearfix">
                             <h6>Skills:</h6>
                             <div class="project-terms">
-                                <%= @project.tags.join(", ") %>
+                                <%= @project.technologies %>
+                            </div>
+                        </li>
+                        <% end %>
+                        <% unless @project.app_types.empty? %>
+                        <li class="clearfix">
+                            <h6>App Categories:</h6>
+                            <div class="project-terms">
+                                <%= @project.app_types.map(&:name).join(", ") %>
                             </div>
                         </li>
                         <% end %>
