@@ -99,7 +99,7 @@
         <div class="row">
             <div class="col-md-8 item-description wrapper-1">
                 <h5 class="subpage-title">Project Description</h5>
-                <%= @project.longer_description %>
+                <%= @project.longer_description || "Description not found." %>
             </div>
         </div>
     </div>
@@ -108,20 +108,20 @@
 <section id="releted-items" class="section colored-wrapper">
     <div class="container wrapper-2">
         <h5 class="subpage-title">
-            <span>Other Recent Projects</span>
+            <span>Other Projects By These Students</span>
             <!-- Controls -->
             <span id="portfolio-next" class="next black"><i class="icon-angle-right"></i></span>
             <span id="portfolio-prev" class="prev black"><i class="icon-angle-left"></i></span>
         </h5>
         <div class="row">
             <div id="caroufredsel-portfolio-container">
-                <% Project.last(5).each do |project| %>
+                <% @other_projects.each do |project| %>
                     <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper">
                         <div class="portfolio-item">
                             <div class="portfolio-thumb">
-                                <img src="../<%= project.screenshot_path %>" class="img-responsive" alt="<%= project.display_name %>">
+                                <img src="../<%= "#{project.screenshot_path}_medium.png" %>" class="img-responsive" alt="<%= project.display_name %>">
                                 <div class="image-overlay"></div>
-                                <a href="../<%= project.screenshot_path %>" rel="prettyPhoto[pp_gal]"  class="portfolio-zoom"><i class="icon-eye-open"></i></a>
+                                <a href="../<%= "#{project.screenshot_path}_medium.png" %>" rel="prettyPhoto[pp_gal]"  class="portfolio-zoom"><i class="icon-eye-open"></i></a>
                                 <%= link_to raw('<i class="icon-link"></i></a>'), project, class: "portfolio-link" %>
                             </div>
                             <div class="portfolio-content">
