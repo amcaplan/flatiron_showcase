@@ -51,8 +51,25 @@ class Project < ActiveRecord::Base
     Project.where("id < ?", id).order(id: :asc).last
   end
 
-  def owner
-    self.users.where("user_projects.owner" => true).first
+  # MAY NEED THIS LATER
+  # def owner
+  #   self.users.where("user_projects.owner" => true).first
+  # end
+
+  # def owner=(user)
+  #   self.user_projects.find_by(user_id: user.id).owner = true
+  # end
+
+  def client
+    users.map(&:github_auth).first.client
+  end
+
+  def last_commit
+    self.client.commits(self.name).first.commit.author.date
+  end
+
+  def github_url
+    "github.com/" + self.name
   end
 
   def remove_url_ends
