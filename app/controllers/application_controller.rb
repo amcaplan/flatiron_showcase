@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   private
     def store_url
-      session[:previous_url] = request.original_url # FIXME store current URL on every page load
+      session[:previous_url] = request.original_url
     end
 
     def set_controller_name

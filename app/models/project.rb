@@ -1,29 +1,28 @@
 class Project < ActiveRecord::Base
-  has_many :user_projects
+  has_many :user_projects, dependent: :destroy
   has_many :users, through: :user_projects
-  validates :github_id, :uniqueness => true 
+  validates :github_id, :uniqueness => true
    
   def take_app_screenshot!
+    self.remove_url_ends
+
     ws = Webshot::Screenshot.instance
      
-    live_app_url = "http://" + self.live_app_url + "/"
-    saving_dir = "public/assets/project-images/"
+    full_live_app_url = "http://" + self.live_app_url + "/"
     timestamp = Time.now.strftime("%Y%m%d%H%M%S")
-    image_filename = timestamp + "_" + self.display_name.downcase.tr(" ", "_")
+    image_filename = timestamp + "_" + self.display_name.downcase.gsub(/[\s\?\'\"]/, "_")
+    self.screenshot_path = "assets/project-images/" + image_filename
+    saving_dir = "./public/assets/project-images/"
 
-    if self.live_app_url
-      large_image = image_filename + "_large.png"
-      medium_image = image_filename + "_medium.png"
-      small_image = image_filename + "_small.png"
-      thumb_image = image_filename + "_thumb.png"
+    large_image = image_filename + "_large.png"
+    medium_image = image_filename + "_medium.png"
+    small_image = image_filename + "_small.png"
+    thumb_image = image_filename + "_thumb.png"
 
-      ws.capture live_app_url, saving_dir + large_image, width: 960, height: 420, quality: 85
-      ws.capture live_app_url, saving_dir + medium_image, width: 583, height: 407, quality: 85
-      ws.capture live_app_url, saving_dir + small_image, width: 290, height: 193, quality: 85
-      ws.capture live_app_url, saving_dir + thumb_image, width: 64, height: 64, quality: 85
-     
-      self.screenshot_path = saving_dir + image_filename
-    end
+    ws.capture full_live_app_url, saving_dir + large_image, width: 960, height: 420, quality: 85
+    ws.capture full_live_app_url, saving_dir + medium_image, width: 583, height: 407, quality: 85
+    ws.capture full_live_app_url, saving_dir + small_image, width: 290, height: 193, quality: 85
+    ws.capture full_live_app_url, saving_dir + thumb_image, width: 64, height: 64, quality: 85
   end
 
   def add_no_screenshot_available_image
@@ -47,16 +46,18 @@ class Project < ActiveRecord::Base
     #%w{HTML5 CSS3 JavaScript jQuery Twitter\ Bootstrap}
   end
 
-  def other_collaborators(user)
-    [user]
-    # FIXME will be users.where.not(id: user.id)
-  end
-
   def next_project
     Project.where("id > ?", id).order(id: :asc).first
   end
 
   def previous_project
     Project.where("id < ?", id).order(id: :asc).last
+  end
+
+  def remove_url_ends
+    if self.live_app_url.start_with?("http://")
+      self.live_app_url = self.live_app_url[7..-1]
+      self.live_app_url = self.live_app_url[0..-2] unless self.live_app_url.end_with?("/")
+    end
   end
 end
