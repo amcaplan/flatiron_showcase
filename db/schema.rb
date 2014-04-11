@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409223720) do
+ActiveRecord::Schema.define(version: 20140411145343) do
+
+  create_table "app_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authorizations", force: true do |t|
     t.string   "github_uid"
@@ -24,6 +30,16 @@ ActiveRecord::Schema.define(version: 20140409223720) do
 
   add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id"
 
+  create_table "project_app_types", force: true do |t|
+    t.integer  "project_id"
+    t.integer  "app_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "project_app_types", ["app_type_id"], name: "index_project_app_types_on_app_type_id"
+  add_index "project_app_types", ["project_id"], name: "index_project_app_types_on_project_id"
+
   create_table "projects", force: true do |t|
     t.string   "name"
     t.string   "live_app_url"
@@ -34,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140409223720) do
     t.datetime "updated_at"
     t.string   "github_id"
     t.string   "display_name"
+    t.string   "technologies"
   end
 
   create_table "user_projects", force: true do |t|
