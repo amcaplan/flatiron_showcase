@@ -21,10 +21,10 @@ class Project < ActiveRecord::Base
     small_image = image_filename + "_small.png"
     thumb_image = image_filename + "_thumb.png"
 
-    ws.capture full_live_app_url, saving_dir + large_image, width: 960, height: 420, quality: 85
-    ws.capture full_live_app_url, saving_dir + medium_image, width: 583, height: 407, quality: 85
-    ws.capture full_live_app_url, saving_dir + small_image, width: 290, height: 193, quality: 85
-    ws.capture full_live_app_url, saving_dir + thumb_image, width: 64, height: 64, quality: 85
+    ws.capture full_live_app_url, saving_dir + large_image, timeout: 1, width: 960, height: 420, quality: 85
+    ws.capture full_live_app_url, saving_dir + medium_image, timeout: 1, width: 583, height: 407, quality: 85
+    ws.capture full_live_app_url, saving_dir + small_image, timeout: 1, width: 290, height: 193, quality: 85
+    ws.capture full_live_app_url, saving_dir + thumb_image, timeout: 1, width: 64, height: 64, quality: 85
   end
 
   def add_no_screenshot_available_image
