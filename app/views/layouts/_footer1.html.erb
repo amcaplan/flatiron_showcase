@@ -7,7 +7,7 @@
                     <p>
                         We know how awesome Flatiron School students are, but we wanted
                         to share it with the world.  Check out what students have been
-                        doing after just 9-12 weeks of programming!
+                        doing after just a few months of programming!
                     </p>
                 </div>
                 <!-- /.about-us -->
@@ -15,29 +15,17 @@
             <!-- /.col-md-3 -->
             <div class="col-md-6">
                 <div class="widget popular-posts">
-                    <h5 class="subpage-title">Popular Posts</h5>
+                    <h5 class="subpage-title">Recent Projects</h5>
                     <ul class="recent-posts">
+                        <% @recent_projects.each do |project| %>
                         <li>
-                            <img src="assets/img/blog/recent-posts/photo (1).jpg" alt="Post Image">
+                            <img src="<%= "#{project.screenshot_path}_thumb.png" %>" alt="<%= project.display_name %>">
                             <h5>
-                                <a href="post-1.html">The Ultimate Guide to Adjustment Layers – Vibrance</a>
-                                <small>Posted July 20, 2013</small>
+                                <%= link_to project.display_name, project %>
+                                <small>Posted at <%= project.created_at %></small>
                             </h5>
                         </li>
-                        <li>
-                            <img src="assets/img/blog/recent-posts/photo (2).jpg" alt="Post Image">
-                            <h5>
-                                <a href="post-1.html">Complete Guide to What’s New in Adobe Photoshop 14.1</a>
-                                <small>Posted July 15, 2013</small>
-                            </h5>
-                        </li>
-                        <li>
-                            <img src="assets/img/blog/recent-posts/photo (3).jpg" alt="Post Image">
-                            <h5>
-                                <a href="post-1.html">How to Integrate Lightroom Into Your Photoshop Workflow</a>
-                                <small>Posted July 10, 2013</small>
-                            </h5>
-                        </li>
+                        <% end %>
                     </ul>
                 </div>
                 <!-- /.popular-posts -->

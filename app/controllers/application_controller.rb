@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :store_url
   before_action :set_controller_name
+  before_action :pick_recent_projects
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -23,5 +24,9 @@ class ApplicationController < ActionController::Base
         @controller = "Students"
         @controller_path = "/users"
       end
+    end
+
+    def pick_recent_projects
+      @recent_projects = Project.last(20).shuffle.take(3)
     end
 end
