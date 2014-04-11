@@ -10,11 +10,7 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
- //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
- //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
- //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
- *= require_self
+ *= require import_bootstrap
  *= require FlatPoint-css/UItoTop/css/ui.totop
  *= require FlatPoint-css/prettyPhoto/css/prettyPhoto
  *= require FlatPoint-css/rs-plugin/css/settings
@@ -22,17 +18,11 @@
  *= require FlatPoint-css/skins
  *= require FlatPoint-css/font-awesome/css/font-awesome
  *= require FlatPoint-css/font-awesome/css/font-awesome-ie7
- 
- //= depend_on_asset "bootstrap/glyphicons-halflings-regular.eot"
- //= depend_on_asset "bootstrap/glyphicons-halflings-regular.woff"
- //= depend_on_asset "bootstrap/glyphicons-halflings-regular.ttf"
- //= depend_on_asset "bootstrap/glyphicons-halflings-regular.svg"
  */
- @import "bootstrap";
 /* Some Style from the Bootstrap Default Theme */
-body {
-  /*padding-top: 70px;
-  padding-bottom: 30px;*/
+/*body {
+  padding-top: 70px;
+  padding-bottom: 30px;
 }
 
 .theme-dropdown .dropdown-menu {
@@ -43,4 +33,4 @@ body {
 
 .theme-showcase > p > .btn {
   margin: 5px 0;
-}
+}*/
