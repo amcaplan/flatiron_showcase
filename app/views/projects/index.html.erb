@@ -49,32 +49,14 @@
                 <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper <%= project.tags.join(' ') %>">
                     <div class="portfolio-item">
                         <div class="portfolio-thumb">
-                            <img src="<%= project.screenshot_path %>", class="img-responsive">
+                            <img src="<%= raw(project.screenshot_path + "_medium.png") %>" class="img-responsive">
                             <div class="image-overlay"></div>
-                            <a href="<%= project.screenshot_path %>" rel="prettyPhoto[pp_gal]"  class="portfolio-zoom"><i class="icon-eye-open"></i></a>
+                            <a href="<%= raw(project.screenshot_path + "_large.png") %>" rel="prettyPhoto[pp_gal]"  class="portfolio-zoom"><i class="icon-eye-open"></i></a>
                             <%= link_to raw("<i class=\"icon-link\"></i>"), project, class: "portfolio-link" %>
                         </div>
                         <div class="portfolio-content">
                             <h5><%= link_to project.name, project %></h5>
                             <p><%= project.brief_description %></p>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.portfolio-item-wrapper -->
-                <% end %>
-                <% #FIXME temporary filler text %>
-                <% 10.times do %>
-                <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper nature outside">
-                    <div class="portfolio-item">
-                        <div class="portfolio-thumb">
-                            <img src="assets/img/portfolio/photo (12).jpg" class="img-responsive" alt="2nd Portfolio Thumb">
-                            <div class="image-overlay"></div>
-                            <a href="assets/img/portfolio/photo (12).jpg" rel="prettyPhoto[pp_gal]" class="portfolio-zoom"><i class="icon-eye-open"></i></a>
-                            <a href="portfolio-item-1.html" class="portfolio-link"><i class="icon-link"></i></a>
-                        </div>
-                        <div class="portfolio-content">
-                            <h5>2nd Portfolio Item</h5>
-                            <p>Nullam id dolor id nibh ultricies vehicula.</p>
                         </div>
                     </div>
                 </div>

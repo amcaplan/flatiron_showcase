@@ -30,7 +30,7 @@
                         <div class="carousel-inner">
                             <% @project.screenshots.each_with_index do |url, index| %>
                             <div class="item <%= "active" if index == 0 %>">
-                                <img src="../<%= url %>" class="img-responsive" alt="Carousel Image">
+                                <img src="../<%= "#{url}_large.png" %>" class="img-responsive" alt="Carousel Image">
                             </div>
                             <% end %>
                         </div>
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 item-description wrapper-1">
+            <div class="col-md-8 item-description wrapper-1">
                 <h5 class="subpage-title">Project Description</h5>
                 <%= @project.longer_description %>
             </div>
