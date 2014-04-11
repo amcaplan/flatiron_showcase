@@ -75,7 +75,7 @@ class ProjectsController < ApplicationController
 
     @projects.each do |project|
       client = current_user.github_auth.client
-      collaborators = client.collabs("#{current_user.github_login}/#{project.name}")
+      collaborators = client.collabs(project.name)
       collaborators.each do |collaborator|
         login = collaborator.login
         existing_user = User.find_by(github_login: login)

@@ -69,4 +69,8 @@ class Project < ActiveRecord::Base
       self.live_app_url = self.live_app_url[0..-2] unless self.live_app_url.end_with?("/")
     end
   end
+
+  def brief_description
+    super || "[DESCRIPTION PENDING]"
+  end
 end
