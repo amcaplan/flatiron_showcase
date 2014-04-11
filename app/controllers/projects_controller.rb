@@ -85,11 +85,26 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+
     # CHANGE INFORMATION ABOUT A PROJECT (name, url, descriptions(optional))
+    project_detail = project_params(params[:project])
+
+    
+    project_detail[:app_type].each do |app_type|
+      if !@project.app_types.pluck(:id).include?(app_type.to_i)
+        @project.app_types << AppType.find(app_type)
+      end
+    end
+
     respond_to do |format|
-      if @project.update(project_params)
+      if @project.update(live_app_url: project_detail[:live_app_url], 
+                         display_name: project_detail[:display_name],
+                         technologies: project_detail[:technologies],
+                         brief_description: project_detail[:brief_description],
+                         longer_description: project_detail[:longer_description])
+
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { render action: 'show', status: :ok, location: @project }
+        #format.json { render action: 'show', status: :ok, location: @project }
       else
         format.html { render action: 'edit' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
@@ -123,6 +138,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params(project)
-      project.permit(:name, :github_id, :live_app_url, :display_name )
+      project.permit(:name, :github_id, :live_app_url, :display_name, :technologies, :brief_description, :longer_description, app_type: [])
     end
 end

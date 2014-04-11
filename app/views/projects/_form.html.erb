@@ -12,16 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :display_name %><br>
+    <%= f.text_field :display_name %>
   </div>
   <div class="field">
     <%= f.label :live_app_url %><br>
     <%= f.text_field :live_app_url %>
   </div>
   <div class="field">
-    <%= f.label :screenshot_path %><br>
-    <%= f.text_field :screenshot_path %>
+    <%= f.label :technologies %><br>
+    <%= f.text_field :technologies %>
+  </div>
+  <div class="app_type_select">
+    <%= f.label :app_type %><br>
+    <%= select_tag "project[app_type]", options_from_collection_for_select(AppType.all, "id", "name"), {:multiple => true, :size => AppType.all.size} %>
   </div>
   <div class="field">
     <%= f.label :brief_description %><br>
