@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    @page_name = "All Students"
+    @page_name = "The Amazing Flatiron Students!"
   end
 
   # GET /users/1
