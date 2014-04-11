@@ -56,7 +56,12 @@ class Project < ActiveRecord::Base
   end
 
   def last_commit
-    self.client.commits(self.name).first.commit.author.date
+    begin
+      self.client.commits(self.name).first.commit.author.date.
+        strftime("%m/%d/%Y at %I:%M%p")
+    rescue
+      "No Commits Yet"
+    end
   end
 
   def github_url

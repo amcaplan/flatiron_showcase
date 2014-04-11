@@ -23,7 +23,7 @@
                             <h5>
                                 <%= link_to project.display_name, project %>
                                 <small>Posted on <%= project.created_at.strftime("%m/%d/%Y") %></small>
-                                <small>Last commit: <%= project.last_commit.strftime("%m/%d/%Y at %I:%M%p") %></small>
+                                <small>Last commit: <%= project.last_commit %></small>
                             </h5>
                         </li>
                         <% end %>
