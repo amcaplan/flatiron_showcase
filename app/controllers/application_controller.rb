@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
       @controller_path = "/#{@controller.downcase}"
       if @controller == "Users"
         @controller = "Students"
-        @controller_path = "/users"
+        @controller_path = "/students"
       end
     end
 

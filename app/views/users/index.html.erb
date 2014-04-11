@@ -1,4 +1,4 @@
-<h1>Listing users</h1>
+<!-- <h1>Listing users</h1>
 
 <table>
   <thead>
@@ -36,4 +36,43 @@
   </tbody>
 </table>
 
-<br>
+<br> -->
+
+<section id="team-4-columns" class="section">
+    <div class="container wrapper-2">
+        <h5 class="subpage-title">The Flatiron School Students</h5>
+        <% @users.each_slice(4) do |user_set| %>
+          <div class="row">
+            <% user_set.each do |user| %>
+              <div class="col-md-3 team-member-wrapper">
+                <div class="team-member">
+                    <div class="team-member-thumb">
+                        <img src="<%= user.avatar_url %>" class="img-responsive" alt="Member Image">
+                        <%= link_to user do %><div class="overlay"></div><% end %>
+                        <ul class="member-social">
+                            <li>
+                              <a href="<%= user.github_url %>" target="_blank"><i class="icon-github"></i></a>
+                            </li>
+                            <% if user.twitter_handle %>
+                              <li><a href="http://twitter.com/<%= user.twitter_handle %>" target="_blank"><i class="icon-twitter"></i></a></li>
+                            <% end %>
+                            <% if user.linkedin_url %>
+                              <li><a href="<%= user.linkedin_url %>" target="_blank"><i class="icon-linkedin"></i></a></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                    <%= link_to user do %>
+                      <div class="team-member-info">
+                          <h5><%= user.name %></h5>
+                          <!-- <span>Ruby 004</span> NOTE: may use this later for a subheader -->
+                      </div>
+                    <% end %>
+                </div>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /#team-3-columns
