@@ -86,14 +86,14 @@
                         <li class="clearfix">
                             <h6>Github:</h6>
                             <div class="project-terms">
-                                <%= link_to @user.github_login, @user.github_url %>
+                                <%= new_tab_link @user.github_login, @user.github_url %>
                             </div>
                         </li>
                         <% if @user.linkedin_url %>
                         <li class="clearfix">
                             <h6>LinkedIn:</h6>
                             <div class="project-terms">
-                                <%= link_to @user.linkedin_url %>
+                                <%= new_tab_link @user.linkedin_url, @user.linkedin_url %>
                             </div>
                         </li>
                         <% end %>
@@ -101,7 +101,7 @@
                         <li class="clearfix">
                             <h6>Twitter:</h6>
                             <div class="project-terms">
-                                <%= link_to "#" + @user.twitter_handle, @user.twitter_url %>
+                                <%= new_tab_link "#" + @user.twitter_handle, @user.twitter_url %>
                             </div>
                         </li>
                         <% end %>
