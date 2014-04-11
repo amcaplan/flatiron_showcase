@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+['developer tools', 'CMS', 'social media', 'the internet of things', 'dashboards', 'food', 'data'].each do |name|
+  AppType.create(name: name)
+end
