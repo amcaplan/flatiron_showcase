@@ -19,10 +19,11 @@
                     <ul class="recent-posts">
                         <% @recent_projects.each do |project| %>
                         <li>
-                            <img src="<%= "#{project.screenshot_path}_thumb.png" %>" alt="<%= project.display_name %>">
+                            <%= link_to raw("<img src=\"/#{project.screenshot_path}_thumb.png\" alt=\"#{project.display_name}\""), project %>
                             <h5>
                                 <%= link_to project.display_name, project %>
-                                <small>Posted at <%= project.created_at %></small>
+                                <small>Posted on <%= project.created_at.strftime("%m/%d/%Y") %></small>
+                                <small>Last commit: <%= project.last_commit.strftime("%m/%d/%Y at %I:%M%p") %></small>
                             </h5>
                         </li>
                         <% end %>
