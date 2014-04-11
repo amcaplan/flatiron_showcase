@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :projects
 
-  resources :users, except: [:new, :create]
+  resources :students, except: [:new, :create], as: :users, to: 'users'
 
   get '/about', to: 'projects#about'
 
