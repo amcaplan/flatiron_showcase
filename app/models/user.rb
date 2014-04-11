@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def organizations
     self.github_auth.organizations
   end
+
+  def github_url
+    "https://github.com/" + github_login
+  end
 end

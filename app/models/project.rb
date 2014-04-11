@@ -51,6 +51,10 @@ class Project < ActiveRecord::Base
     Project.where("id < ?", id).order(id: :asc).last
   end
 
+  def owner
+    self.users.where("user_projects.owner" => true).first
+  end
+
   def remove_url_ends
     if self.live_app_url.start_with?("http://")
       self.live_app_url = self.live_app_url[7..-1]

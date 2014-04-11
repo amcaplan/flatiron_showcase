@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411145343) do
+ActiveRecord::Schema.define(version: 20140411163917) do
 
   create_table "app_types", force: true do |t|
     t.string   "name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140411145343) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "owner"
   end
 
   add_index "user_projects", ["project_id"], name: "index_user_projects_on_project_id"
@@ -68,12 +69,12 @@ ActiveRecord::Schema.define(version: 20140411145343) do
     t.string   "email"
     t.string   "twitter_handle"
     t.string   "linkedin_url"
-    t.string   "github_url"
     t.string   "avatar_url"
     t.text     "bio"
     t.boolean  "hireable"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "github_login"
   end
 
 end

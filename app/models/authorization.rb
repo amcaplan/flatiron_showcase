@@ -6,10 +6,15 @@ class Authorization < ActiveRecord::Base
     if auth.provider == "github"
       authorization.token = auth.credentials.token
       authorization.github_login = auth.login
+
+      # Verify that the user is in the flatiron-school-students organization
+      return false if !authorization.organizations.map(&:id).include?(6207995)
     end
     
     user = authorization.user || User.new
-    user.name = auth.info.name
+    user.github_login = auth.extra.raw_info.login
+    user.name ||= auth.info.name
+    user.name ||= auth.extra.raw_info.login
     if auth.provider == "github"
       user.avatar_url = auth.extra.raw_info.avatar_url
       user.github_url = auth.extra.raw_info.html_url
@@ -19,13 +24,6 @@ class Authorization < ActiveRecord::Base
 
     authorization.user = user
     authorization.save!
-
-    # Verify that the user is in the flatiron-school-students organization
-    if !authorization.organizations.map(&:id).include?(6207995)
-      user.destroy
-      authorization.destroy
-      return false
-    end
 
     user
   end
