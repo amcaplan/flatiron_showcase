@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
       end
 
       @select_projects.map! do |project|
-        Project.new(name: project.name, github_id: project.id, display_name: project.name)
+        Project.new(name: project.full_name, github_id: project.id, display_name: project.name)
       end
 
     end
@@ -71,10 +71,25 @@ class ProjectsController < ApplicationController
       end
     end
     
-   # raise params.inspect
+    projects_saved = @projects.all?(&:save)
+
+    @projects.each do |project|
+      client = current_user.github_auth.client
+      collaborators = client.collabs("#{current_user.github_login}/#{project.name}")
+      collaborators.each do |collaborator|
+        login = collaborator.login
+        existing_user = User.find_by(github_login: login)
+        if existing_user
+          project.users << existing_user
+        else
+          project.users << User.create_from_hash(collaborator)
+        end
+      end
+
+    end
+
     respond_to do |format|
-      if @projects.all?(&:save)
-        @projects.each {|project| project.users << current_user} # FIXME query github to get all collaborators for the project
+      if projects_saved
         format.html { redirect_to current_user, notice: 'Projects were successfully created.' }
        # format.json { render action: 'show', status: :created, location: @project }
       else
@@ -125,6 +140,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params(project)
-      project.permit(:name, :github_id, :live_app_url, :display_name )
+      project.permit(:name, :github_id, :live_app_url, :display_name)
     end
 end
