@@ -12,7 +12,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @page_name = @project.name
+    @page_name = @project.display_name
+    @other_projects = @project.users.map(&:projects).flatten.
+      reject{|project| project == @project}.uniq.shuffle.first(5)
   end
 
   # GET /projects/new
