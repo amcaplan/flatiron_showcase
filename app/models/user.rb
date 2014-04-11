@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
   def github_url
     "https://github.com/" + github_login
   end
+
+  def twitter_url
+    "http://twitter.com/" + twitter_handle
+  end
 end
