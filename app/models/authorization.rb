@@ -12,12 +12,12 @@ class Authorization < ActiveRecord::Base
     end
     
     user = authorization.user || User.new
-    user.github_login = auth.extra.raw_info.login
     user.name ||= auth.info.name
-    user.name ||= auth.extra.raw_info.login
+
     if auth.provider == "github"
+      user.name ||= auth.extra.raw_info.login
+      user.github_login = auth.extra.raw_info.login
       user.avatar_url = auth.extra.raw_info.avatar_url
-      user.github_url = auth.extra.raw_info.html_url
     end
     user.email ||= auth.info.email
     user.save!
