@@ -106,10 +106,11 @@ class ProjectsController < ApplicationController
     # CHANGE INFORMATION ABOUT A PROJECT (name, url, descriptions(optional))
     project_detail = project_params(params[:project])
 
-    
-    project_detail[:app_type].each do |app_type|
-      if !@project.app_types.pluck(:id).include?(app_type.to_i)
-        @project.app_types << AppType.find(app_type)
+    if project_detail[:app_type]
+      project_detail[:app_type].each do |app_type|
+        if !@project.app_types.pluck(:id).include?(app_type.to_i)
+          @project.app_types << AppType.find(app_type)
+        end
       end
     end
 
