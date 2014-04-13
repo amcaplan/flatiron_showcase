@@ -69,10 +69,10 @@ class Project < ActiveRecord::Base
   end
 
   def remove_url_ends
-    if self.live_app_url.start_with?("http://")
-      self.live_app_url = self.live_app_url[7..-1]
-      self.live_app_url = self.live_app_url[0..-2] unless self.live_app_url.end_with?("/")
+    if !self.live_app_url.start_with?("http://") && !self.live_app_url.start_with?("https://")
+      self.live_app_url = "http://#{self.live_app_url}"
     end
+    self.live_app_url.chop! if self.live_app_url.end_with?("/")
   end
 
   def brief_description
