@@ -10,15 +10,23 @@ class User < ActiveRecord::Base
   end
 
   def github_auth
-    @github_auth = self.authorizations.where.not(github_uid: nil).first
+    @github_auth ||= self.authorizations.where.not(github_uid: nil).first
+  end
+
+  def client
+    if self.github_auth
+      @client ||= self.github_auth.client
+    else
+      @client = self.projects.map(&:client).first
+    end
   end
 
   def repos
-    self.github_auth.repos
+    self.client.repos
   end
 
   def organizations
-    self.github_auth.organizations
+    self.client.organizations
   end
 
   def github_url
@@ -27,5 +35,20 @@ class User < ActiveRecord::Base
 
   def twitter_url
     "http://twitter.com/" + twitter_handle
+  end
+
+  Commit = Struct.new(:datetime, :repo, :repo_url, :commit_url)
+
+  def last_commit
+    if !@last_commit
+      commit_hash = self.client.user_events(self.name).select { |event|
+        event.type == "PushEvent"
+      }.first
+      datetime = commit_hash.created_at.strftime("%m/%d/%Y at %I:%M%p")
+      repo = commit_hash.repo.name.gsub(/.+\//,'')
+      repo_url = "https://github.com/" + commit_hash.repo.name
+      commit_url = "#{repo_url}/commit/#{commit_hash.payload.commits.last.sha}"
+    end
+    @last_commit ||= Commit.new(datetime, repo, repo_url, commit_url)
   end
 end
