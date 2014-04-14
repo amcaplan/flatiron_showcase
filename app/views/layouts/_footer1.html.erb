@@ -22,22 +22,20 @@
             </div>
             <!-- /.col-md-3 -->
             <div class="col-md-4">
-                <div class="col-md-10 center-block col-centered">
-                    <div class="widget popular-posts">
-                        <h5 class="subpage-title">Recent Projects by Students</h5>
-                        <ul class="recent-posts">
-                            <% @recent_projects.each do |project| %>
-                            <li>
-                                <%= link_to raw("<img src=\"/#{project.screenshot_path}_thumb.png\" alt=\"#{project.display_name}\">"), project %>
-                                <h5>
-                                    <%= link_to project.display_name, project %>
-                                    <small>Posted on <%= project.created_at.strftime("%m/%d/%Y") %></small>
-                                    <small>Last commit: <%= project.last_commit %></small>
-                                </h5>
-                            </li>
-                            <% end %>
-                        </ul>
-                    </div>
+                <div class="widget popular-posts">
+                    <h5 class="subpage-title">Recent Projects by Students</h5>
+                    <ul class="recent-posts">
+                        <% @recent_projects.each do |project| %>
+                        <li>
+                            <%= link_to raw("<img src=\"/#{project.screenshot_path}_thumb.png\" alt=\"#{project.display_name}\">"), project %>
+                            <h5>
+                                <%= link_to project.display_name, project %>
+                                <small>Posted on <%= project.created_at.strftime("%m/%d/%Y") %></small>
+                                <small>Last commit: <%= project.last_commit %></small>
+                            </h5>
+                        </li>
+                        <% end %>
+                    </ul>
                 </div>
                 <!-- /.popular-posts -->
             </div>
