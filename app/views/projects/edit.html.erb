@@ -1,6 +1,63 @@
-<h1>Editing project</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content-wrapper">
+      <br>
+      <%= form_for(@project, class: "comment-form") do |f| %>
+        <% if @project.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+            <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="row">
+            <div class="col-md-3">
+                <%= f.label :display_name, class: "subpage-title" %><br>
+                <%= f.text_field :display_name, class: "form-control" %>
+            </div>
+            <div class="col-md-3">
+                <%= f.label :live_app_url, class: "subpage-title" %><br>
+                <%= f.text_field :live_app_url, class: "form-control" %>
+            </div>
+            <div class="col-md-3">
+                <%= f.label :technologies, class: "subpage-title" %><br>
+                <%= f.text_field :technologies, class: "form-control", placeholder: "e.g. jQuery, Rails, GitHub API" %>
+            </div>
+            <div class="col-md-3">
+                <%= f.label :brief_description, class: "subpage-title" %><br>
+                <%= f.text_field :brief_description, class: "form-control", placeholder: "e.g., A super-cool app for doing stuff" %>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.label :app_type, class: "subpage-title" %><br>
+            <%= select_tag "project[app_type]", options_from_collection_for_select(AppType.all, "id", "name", @project.app_types.map(&:id)), {:multiple => true, :size => AppType.all.size, :class => "form-control"} %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :longer_description, class: "subpage-title" %><br>
+            <%= f.text_area :longer_description, class: "form-control", rows: AppType.all.size, placeholder: "Here is a description of our app.  It's really amazing.  Seriously, you have to check it out.  You won't believe your eyes!  It will do your laundry! It will cut your hair!  It will check your email for you, and always remember to avoid reply-all!" %>
+          </div>
+        </div>
+        <br>
+        <div class="actions">
+          <div class="row">
+            <div class="col-md-6 center-block col-centered clearfix submit-buttons">
+              <div class="col-md-6">
+                <%= f.submit class: "btn btn-flat flat-primary btn-lg btn-block" %>
+              </div>
+              <div class="col-md-6">
+                <%= link_to 'Back', @project, class: "btn btn-flat flat-danger btn-lg btn-block" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<br><br>

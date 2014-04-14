@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
-    @page_name = "Edit #{@project.name}"
+    @page_name = "Edit \"#{@project.display_name}\""
   end
 
   # POST /projects

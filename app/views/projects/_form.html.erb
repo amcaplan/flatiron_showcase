@@ -1,4 +1,24 @@
-<%= form_for(@project) do |f| %>
+<form class="comment-form">
+                                <h5 class="subpage-title">Add Comment</h5>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <input class="form-control" placeholder="Name (required)" type="text">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control" placeholder="Email (required)" type="text">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input class="form-control" placeholder="Website" type="text">
+                                    </div>
+                                </div>
+                                <!-- row-fluid -->
+                                <textarea class="form-control" rows="3"></textarea>
+                                <button class="btn btn-flat flat-color">Post Comment</button>
+                            </form>
+                            <!-- /.comment-form -->
+
+
+<%= form_for(@project, class: "comment-form") do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
