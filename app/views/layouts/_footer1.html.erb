@@ -1,7 +1,7 @@
 <footer id="footer-1" class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="widget about-us">
                     <span class="footer-brand"><span>The</span>Flatiron<span>Showcase</span></span>
                     <p>
@@ -12,22 +12,32 @@
                 </div>
                 <!-- /.about-us -->
             </div>
-            <!-- /.col-md-3 -->
-            <div class="col-md-6">
+            
+            <div class="col-md-4">
                 <div class="widget popular-posts">
-                    <h5 class="subpage-title">Recent Projects</h5>
-                    <ul class="recent-posts">
-                        <% @recent_projects.each do |project| %>
-                        <li>
-                            <%= link_to raw("<img src=\"/#{project.screenshot_path}_thumb.png\" alt=\"#{project.display_name}\">"), project %>
-                            <h5>
-                                <%= link_to project.display_name, project %>
-                                <small>Posted on <%= project.created_at.strftime("%m/%d/%Y") %></small>
-                                <small>Last commit: <%= project.last_commit %></small>
-                            </h5>
-                        </li>
-                        <% end %>
-                    </ul>
+                    <h5 class="subpage-title">Tweets by @flatironschool</h5>
+                    <%= render partial: 'layouts/flatiron_twitter_feed' %>
+                </div>
+                <!-- /.popular-posts -->
+            </div>
+            <!-- /.col-md-3 -->
+            <div class="col-md-4">
+                <div class="col-md-10 center-block col-centered">
+                    <div class="widget popular-posts">
+                        <h5 class="subpage-title">Recent Projects by Students</h5>
+                        <ul class="recent-posts">
+                            <% @recent_projects.each do |project| %>
+                            <li>
+                                <%= link_to raw("<img src=\"/#{project.screenshot_path}_thumb.png\" alt=\"#{project.display_name}\">"), project %>
+                                <h5>
+                                    <%= link_to project.display_name, project %>
+                                    <small>Posted on <%= project.created_at.strftime("%m/%d/%Y") %></small>
+                                    <small>Last commit: <%= project.last_commit %></small>
+                                </h5>
+                            </li>
+                            <% end %>
+                        </ul>
+                    </div>
                 </div>
                 <!-- /.popular-posts -->
             </div>
