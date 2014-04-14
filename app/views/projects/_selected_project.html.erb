@@ -1,16 +1,29 @@
 <div class="container">
 <%= form_tag "/projects" do %>
   <% @select_projects.each do |project| %>
-    <h3 class="subpage-title">Project: <%= project.name[/\/.+/][1..-1] %></h3>
-    <%= fields_for project do |f| %>
-      <%= f.hidden_field(:name, {name: "projects[][name]"} ) %>
-      <%= f.hidden_field(:github_id, {name: "projects[][github_id]"} ) %>
-      <%= f.label :display_name %>:
-      <%= f.text_field :display_name, {name: "projects[][display_name]", val: project.name[/\/.+/][1..-1]} %><br />
-      <%= f.label :live_app_url %>:
-      <%= f.text_field :live_app_url, {name: "projects[][live_app_url]"} %><br /> 
-    <% end %>
-   <% end %>
-  <%= submit_tag "update" %>
+    <div class="row">
+      <h4 class="subpage-title">Project: <%= project.name[/\/.+/][1..-1] %></h4>
+      <%= fields_for project do |f| %>
+        <%= f.hidden_field(:name, {name: "projects[][name]"} ) %>
+        <%= f.hidden_field(:github_id, {name: "projects[][github_id]"} ) %>
+        <div class="col-md-3">
+        <%= f.label :display_name %>
+        <%= f.text_field :display_name, {name: "projects[][display_name]", class: "form-control", val: project.name[/\/.+/][1..-1] } %>
+        </div>
+        <div class="col-md-3">
+        <%= f.label :live_app_url %>
+        <%= f.text_field :live_app_url, {name: "projects[][live_app_url]", class: "form-control" } %>
+        </div>
+      <% end %>
+    </div>
+    <br>
+  <% end %>
+   <br>
+   <div class="actions clearfix">
+      <div class="col-md-3">
+        <%= submit_tag "update", class: "btn btn-flat flat-primary btn-lg btn-block" %>
+      </div>
+    </div>
 <% end %>
+<br>
 </div>

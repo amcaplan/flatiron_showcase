@@ -4,22 +4,22 @@
     <h3 class="subpage-title">Which projects would you like to add?</h3>
     <%= form_tag new_project_path, method: :get, remote: true do %>
     <div class="row"> 
-    <% @github_projects.each do |p| %>
-      <div class="col-md-3">
-        <div class="form-group checkbox">
-          <input id="<%= p.id %>" name="projects[]" type="checkbox" value="<%= p.id %>">
-          <%= label_tag(p.id, p.name, class: "form-control no-box") %>
+      <% @github_projects.each do |p| %>
+        <div class="col-md-3">
+          <div class="form-group checkbox">
+            <input id="<%= p.id %>" name="projects[]" type="checkbox" value="<%= p.id %>">
+            <%= label_tag(p.id, p.name, class: "form-control no-box") %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+      <br> 
+      <div class="actions clearfix">
+        <div class="col-md-3">
+              <%= submit_tag "Select", class: "btn btn-flat flat-primary btn-lg btn-block" %>
         </div>
       </div>
     <% end %>
-    </div>
+    <br>
   </div>
-  <br>
-  <div class="actions clearfix">
-    <div class="col-md-3">
-          <%= submit_tag "Select", class: "btn btn-flat flat-primary btn-lg btn-block" %>
-    </div>
-  </div>
-  <% end %>
-  <br>
 </div>
