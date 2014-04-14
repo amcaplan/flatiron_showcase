@@ -6,11 +6,11 @@ class Project < ActiveRecord::Base
   validates :github_id, :uniqueness => true
    
   def take_app_screenshot!
-    self.remove_url_ends
+    self.fix_url_ends
 
     ws = Webshot::Screenshot.instance
      
-    full_live_app_url = "http://" + self.live_app_url + "/"
+    full_live_app_url = self.live_app_url + "/"
     timestamp = Time.now.strftime("%Y%m%d%H%M%S")
     image_filename = timestamp + "_" + self.display_name.downcase.gsub(/[\s\?\'\"]/, "_")
     self.screenshot_path = "assets/project-images/" + image_filename
@@ -52,7 +52,7 @@ class Project < ActiveRecord::Base
   end
 
   def client
-    users.map(&:github_auth).first.client
+    users.map(&:github_auth).compact.first.client
   end
 
   def last_commit
@@ -68,7 +68,7 @@ class Project < ActiveRecord::Base
     "github.com/" + self.name
   end
 
-  def remove_url_ends
+  def fix_url_ends
     if !self.live_app_url.start_with?("http://") && !self.live_app_url.start_with?("https://")
       self.live_app_url = "http://#{self.live_app_url}"
     end
