@@ -2,7 +2,7 @@
     <div class="fullwidthbanner">
         <ul>
             <!-- THE 1ST SLIDE -->
-            <li data-transition="papercut" data-slotamount="10" data-masterspeed="300">
+            <li data-transition="3dcurtain-vertical" data-slotamount="10" data-masterspeed="300">
                 <img src="/assets/slider-backgrounds/glowing-waves-2.png" alt="Slide Image">
                 <div class="caption sft stt tp-caption start modern_big_bluebg"
                     data-x="251"
@@ -55,46 +55,8 @@
                     data-start="1200" 
                     data-easing="easeOutBack"><iframe src="http://player.vimeo.com/video/62294626?title=0&amp;byline=0&amp;portrait=0" width="711" height="400"></iframe></div>
            </li>
-            <!-- THE 2ND SLIDE <%# TODO Put in some content on this slide or get rid of it! %> -->
-            <li data-transition="slideleft" data-slotamount="10" data-masterspeed="300">
-                <img src="assets/slider-backgrounds/blue-abstract-background-1520.png" alt="Slide Image">
-                <div class="caption boxshadow lfr ltr"
-                    data-x="595" 
-                    data-y="0" 
-                    data-speed="900"
-                    data-start="500" 
-                    data-easing="easeOutBack"><img src="<%= @projects[1].screenshot_path + "_medium.png" %>" width="460" height="259"></div>
-                <div class="caption modern_big_bluebg sft stt" 
-                    data-x="145" 
-                    data-y="80"
-                    data-speed="300" 
-                    data-start="1200" 
-                    data-easing="easeOutExpo"><%= @projects[1].display_name %></div>
-                <div class="caption theme_caption1 sft stt" 
-                    data-x="150" 
-                    data-y="120" 
-                    data-speed="300"
-                    data-start="1400" 
-                    data-easing="easeOutExpo"><%= @projects[1].brief_description %></div>
-                <% @projects[1].longer_description.split.each_slice(5).first(3).map{|slice| slice.join(" ")}.each_with_index do |five_words, index| %>
-                    <div class="caption theme_caption4 lfb ltb" 
-                        data-x="145" 
-                        data-y="<%= 165 + index * 40 %>" 
-                        data-speed="300" 
-                        data-start="<%= 1600 + index * 200 %>"
-                        data-easing="easeOutExpo"><%= five_words %></div>
-                <% end %>
-                <% @projects[1].longer_description.split[15..-1].each_slice(10).map{|slice| slice.join(" ")}.each_with_index do |ten_words, index| %>
-                    <div class="caption theme_caption4 lfb ltb" 
-                        data-x="145" 
-                        data-y="<%= 285 + index * 40 %>" 
-                        data-speed="300" 
-                        data-start="<%= 2200 + index * 200 %>"
-                        data-easing="easeOutExpo"><%= ten_words %></div>
-                <% end %>
-            </li>
-            <!-- THE 3RD SLIDE -->
-            <li data-transition="boxslide" data-slotamount="10" data-masterspeed="300">
+            <!-- THE 2ND SLIDE -->
+            <li data-transition="cubic" data-slotamount="10" data-masterspeed="300">
                 <img src="assets/slider-backgrounds/green-bokeh-background-1938.jpg" alt="Slide Image">
                 <div class="tp-caption theme_caption2 lft ltt"
                     data-x="720"
@@ -172,7 +134,7 @@
         if (tpj.fn.cssOriginal != undefined)
             tpj.fn.css = tpj.fn.cssOriginal;
         tpj('.fullwidthbanner').revolution({
-            delay: 9000,
+            delay: 15000,
             startwidth: 1200,
             startheight: 400,
     
