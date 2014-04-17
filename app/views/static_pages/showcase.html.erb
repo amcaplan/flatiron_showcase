@@ -1,0 +1,104 @@
+<%= render partial: 'layouts/document_beginning' %>
+<section id="tp-banner-container" class="fullwidthbanner-container tp-banner-container hidden-xs">
+  <div class="tp-banner">
+      <ul>
+        <% @projects.each_with_index do |project, index| %>
+          <li data-transition="fade" data-slotamount="10" data-masterspeed="300">
+              <img src="/assets/slider-backgrounds/<%= @colors.take(index + 1).last %>.png" alt="Slide Image">
+              <div class="caption sft stt tp-caption start modern_big_bluebg"
+                  data-x="251"
+                  data-y="75"
+                  data-speed="300"
+                  data-start="2000"
+                  data-easing="easeOutExpo">WELCOME TO</div>
+              <div class="caption sft stt tp-caption start modern_big_redbg"
+                  data-x="89"
+                  data-y="118"
+                  data-speed="300"
+                  data-start="2200"
+                  data-easing="easeOutExpo">THE FLATIRON SHOWCASE</div>
+              <div class="tp-caption theme_caption4 lft ltt"
+                  data-x="113"
+                  data-y="158"
+                  data-speed="300"
+                  data-start="2400"
+                  data-easing="easeOutExpo">PREPARE TO BE AMAZED</div>
+              <div class="caption theme_caption1 sft stt"
+                  data-x="144"
+                  data-y="198"
+                  data-speed="600"
+                  data-start="2600"
+                  data-easing="easeOutExpo">
+                  <div>
+                      <p style="margin-top:3px; margin-right: 5px">AT WHAT FLATIRON STUDENTS</p>
+                      <p>HAVE CREATED WITHIN</p>
+                      <p style="margin-bottom:5px;">60 DAYS OF PROGRAMMING</p>
+                  </div>
+              </div>
+              <a href="http://theflatironschool.com" target="_blank"
+                  class="caption btn btn-flat flat-success sfb stb" 
+                  data-x="318"
+                  data-y="297"
+                  data-speed="300" 
+                  data-start="2800"
+                  data-easing="easeOutExpo">About the School</a>
+              <a href="/projects"
+                  class="caption btn btn-flat flat-color sfb stb"  
+                  data-x="318" 
+                  data-y="345" 
+                  data-speed="300"
+                  data-start="3000"
+                  data-easing="easeOutExpo">See the Projects!</a>
+              <div class="caption boxshadow lfr ltr"
+                  data-x="470" 
+                  data-y="0" 
+                  data-speed="900"
+                  data-start="1200" 
+                  data-easing="easeOutBack"><iframe src="http://player.vimeo.com/video/62294626?title=0&amp;byline=0&amp;portrait=0" width="711" height="400"></iframe></div>
+          </li>
+        <% end %>
+      </ul>
+      <div class="tp-bannertimer tp-bottom"></div>
+  </div>
+</div>
+<script type="text/javascript">
+
+  var revapi;
+
+  jQuery(document).ready(function() {
+
+       revapi = jQuery('.tp-banner').revolution(
+      {
+        delay:15000,
+        startwidth:1170,
+        startheight: 500,
+        hideThumbs:10,
+        fullWidth:"off",
+        fullScreen:"on",
+        fullScreenOffsetContainer: "",
+
+        navigationType: "bullet",
+        navigationArrows: "nexttobullet",
+        navigationStyle: "round",
+        navigationHAlign: "left",
+        navigationVAlign: "bottom",
+        navigationHOffset: 30,
+        navigationVOffset: 30,
+
+        soloArrowLeftHalign: "left",
+        soloArrowLeftValign: "center",
+        soloArrowLeftHOffset: 20,
+        soloArrowLeftVOffset: 0,
+
+
+        soloArrowRightHalign: "right",
+        soloArrowRightValign: "center",
+        soloArrowRightHOffset: 20,
+        soloArrowRightVOffset: 0
+
+      });
+
+  }); //ready
+
+</script>
+<%= render partial: 'layouts/document_end' %>

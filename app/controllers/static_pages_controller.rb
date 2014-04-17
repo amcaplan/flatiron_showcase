@@ -6,4 +6,10 @@ class StaticPagesController < ApplicationController
       @projects = [@projects[0], @projects[0], @projects[0]]
     end
   end
+
+  def showcase
+    @projects = Project.all.shuffle
+    @colors = (0..3).to_a.shuffle.cycle
+    render layout: false
+  end
 end
