@@ -1,161 +1,161 @@
-<section id="fullwidthbanner-container" class="section fullwidthbanner-container">
+<section id="fullwidthbanner-container" class="section fullwidthbanner-container hidden-xs">
     <div class="fullwidthbanner">
         <ul>
             <!-- THE 1ST SLIDE -->
             <li data-transition="papercut" data-slotamount="10" data-masterspeed="300">
-                <img src="<%= Project.first.screenshot_path + "_large.png" %>" alt="Slide Image">
-                <div class="tp-caption modern_medium_fat sft stt"
-                    data-x="145"
+                <img src="/assets/slider-backgrounds/glowing-waves-2.png" alt="Slide Image">
+                <div class="caption sft stt tp-caption start modern_big_bluebg"
+                    data-x="251"
                     data-y="75"
-                    data-speed="300"
-                    data-start="1000"
-                    data-easing="easeOutExpo">FOCUS ON THE</div>
-                <div class="tp-caption modern_medium_light sft stt"
-                    data-x="325"
-                    data-y="75"
-                    data-speed="300"
-                    data-start="1000"
-                    data-easing="easeOutExpo">MOBILE DEVICES</div>
-                <div class="tp-caption big_black lft ltt"
-                    data-x="145"
-                    data-y="115"
-                    data-speed="300"
-                    data-start="1200"
-                    data-easing="easeOutExpo">ULTRA RESPONSIVE...</div>
-                <div class="tp-caption theme_caption3 sfl stl"
-                    data-x="145"
-                    data-y="170"
-                    data-speed="600"
-                    data-start="1400"
-                    data-easing="easeOutExpo">
-                    Lorem ipsum dolor sit amet, eum cu sint dolores, dicat<br>
-                    possit malorum at sit, ut natum assentior mea. Mel congue malorum te, eu <br>
-                    cum blandit salutatus comprehensam, atqui causae ancillae cum ei. <br>
-                    His eu ignota praesent democritum.
-                </div>
-                <a href="" class="caption btn btn-flat flat-primary btn-bordered sfb stb" 
-                    data-x="145"
-                    data-y="280"
-                    data-speed="300" 
-                    data-start="1600"
-                    data-easing="easeOutExpo">Learn More</a>
-                <a href="" class="caption btn btn-flat flat-color sfb stb"  
-                    data-x="265" 
-                    data-y="280" 
-                    data-speed="300"
-                    data-start="1800"
-                    data-easing="easeOutExpo">Purchase Now</a>
-                <div class="caption lfr ltr"
-                    data-x="725"
-                    data-y="0"
                     data-speed="300"
                     data-start="2000"
-                    data-easing="easeOutExpo"><img src="assets/img/slides/iphone (1).png" alt="Slide Image"></div>
-                <div class="caption lfr ltr"
-                    data-x="565"
-                    data-y="0"
+                    data-easing="easeOutExpo">WELCOME TO</div>
+                <div class="caption sft stt tp-caption start modern_big_redbg"
+                    data-x="89"
+                    data-y="118"
                     data-speed="300"
                     data-start="2200"
-                    data-easing="easeOutExpo"><img src="assets/img/slides/iphone (2).png" alt="Slide Image"></div>
-            </li>
-            <!-- THE 2ND SLIDE -->
+                    data-easing="easeOutExpo">THE FLATIRON SHOWCASE</div>
+                <div class="tp-caption theme_caption4 lft ltt"
+                    data-x="113"
+                    data-y="158"
+                    data-speed="300"
+                    data-start="2400"
+                    data-easing="easeOutExpo">PREPARE TO BE AMAZED</div>
+                <div class="caption theme_caption1 sft stt"
+                    data-x="144"
+                    data-y="198"
+                    data-speed="600"
+                    data-start="2600"
+                    data-easing="easeOutExpo">
+                    <div>
+                        <p style="margin-top:3px; margin-right: 5px">AT WHAT FLATIRON STUDENTS</p>
+                        <p>HAVE CREATED WITHIN</p>
+                        <p style="margin-bottom:5px;">60 DAYS OF PROGRAMMING</p>
+                    </div>
+                </div>
+                <a href="http://theflatironschool.com" target="_blank"
+                    class="caption btn btn-flat flat-success sfb stb" 
+                    data-x="318"
+                    data-y="297"
+                    data-speed="300" 
+                    data-start="2800"
+                    data-easing="easeOutExpo">About the School</a>
+                <a href="/projects"
+                    class="caption btn btn-flat flat-color sfb stb"  
+                    data-x="318" 
+                    data-y="345" 
+                    data-speed="300"
+                    data-start="3000"
+                    data-easing="easeOutExpo">See the Projects!</a>
+                <div class="caption boxshadow lfr ltr"
+                    data-x="470" 
+                    data-y="0" 
+                    data-speed="900"
+                    data-start="1200" 
+                    data-easing="easeOutBack"><iframe src="http://player.vimeo.com/video/62294626?title=0&amp;byline=0&amp;portrait=0" width="711" height="400"></iframe></div>
+           </li>
+            <!-- THE 2ND SLIDE <%# TODO Put in some content on this slide or get rid of it! %> -->
             <li data-transition="slideleft" data-slotamount="10" data-masterspeed="300">
-                <img src="<%= Project.first.screenshot_path + "_large.png" %>" alt="Slide Image">
+                <img src="assets/slider-backgrounds/blue-abstract-background-1520.png" alt="Slide Image">
                 <div class="caption boxshadow lfr ltr"
                     data-x="595" 
-                    data-y="70" 
+                    data-y="0" 
                     data-speed="900"
                     data-start="500" 
-                    data-easing="easeOutBack"><iframe src="http://player.vimeo.com/video/25708134?title=0&amp;byline=0&amp;portrait=0" width="460" height="259"></iframe></div>
+                    data-easing="easeOutBack"><img src="<%= @projects[1].screenshot_path + "_medium.png" %>" width="460" height="259"></div>
                 <div class="caption modern_big_bluebg sft stt" 
                     data-x="145" 
                     data-y="80"
                     data-speed="300" 
                     data-start="1200" 
-                    data-easing="easeOutExpo">VIDEO SUPPORT</div>
+                    data-easing="easeOutExpo"><%= @projects[1].display_name %></div>
                 <div class="caption theme_caption1 sft stt" 
                     data-x="150" 
                     data-y="120" 
                     data-speed="300"
                     data-start="1400" 
-                    data-easing="easeOutExpo">VIMEO EXAMPLE</div>
-                <div class="caption theme_caption4 lfb ltb" 
-                    data-x="145" 
-                    data-y="165" 
-                    data-speed="300" 
-                    data-start="1600"
-                    data-easing="easeOutExpo">YOU CAN EASILY</div>
-                <div class="caption theme_caption4 lfb ltb" 
-                    data-x="145" 
-                    data-y="205" 
-                    data-speed="300" 
-                    data-start="1800"
-                    data-easing="easeOutExpo">ADD VIMEO &</div>
-                <div class="caption theme_caption4 lfb ltb" 
-                    data-x="145"
-                    data-y="245"
-                    data-speed="300"
-                    data-start="2000" 
-                    data-easing="easeOutExpo">YOUTUBE VIDEOS TO</div>
-                <div class="caption theme_caption4 lfb ltb" 
-                    data-x="145" 
-                    data-y="285" 
-                    data-speed="300"
-                    data-start="2200"
-                    data-easing="easeOutExpo">YOUR SLIDES</div>
+                    data-easing="easeOutExpo"><%= @projects[1].brief_description %></div>
+                <% @projects[1].longer_description.split.each_slice(5).first(3).map{|slice| slice.join(" ")}.each_with_index do |five_words, index| %>
+                    <div class="caption theme_caption4 lfb ltb" 
+                        data-x="145" 
+                        data-y="<%= 165 + index * 40 %>" 
+                        data-speed="300" 
+                        data-start="<%= 1600 + index * 200 %>"
+                        data-easing="easeOutExpo"><%= five_words %></div>
+                <% end %>
+                <% @projects[1].longer_description.split[15..-1].each_slice(10).map{|slice| slice.join(" ")}.each_with_index do |ten_words, index| %>
+                    <div class="caption theme_caption4 lfb ltb" 
+                        data-x="145" 
+                        data-y="<%= 285 + index * 40 %>" 
+                        data-speed="300" 
+                        data-start="<%= 2200 + index * 200 %>"
+                        data-easing="easeOutExpo"><%= ten_words %></div>
+                <% end %>
             </li>
             <!-- THE 3RD SLIDE -->
             <li data-transition="boxslide" data-slotamount="10" data-masterspeed="300">
-                <img src="<%= Project.first.screenshot_path + "_large.png" %>" alt="Slide Image">
-                <div class="tp-caption modern_medium_fat sft stt"
-                    data-x="145"
-                    data-y="75"
-                    data-speed="300"
-                    data-start="2000"
-                    data-easing="easeOutExpo">MINIMAL, SPACIOUS</div>
-                <div class="tp-caption modern_medium_light sft stt"
-                    data-x="400"
-                    data-y="75"
-                    data-speed="300"
-                    data-start="2000"
-                    data-easing="easeOutExpo">& EASY TO USE</div>
+                <img src="assets/slider-backgrounds/green-bokeh-background-1938.jpg" alt="Slide Image">
                 <div class="tp-caption theme_caption2 lft ltt"
-                    data-x="145"
-                    data-y="115"
+                    data-x="720"
+                    data-y="10"
                     data-speed="300"
-                    data-start="2200"
-                    data-easing="easeOutExpo">SIMPLE & CLEAN DESIGN...</div>
-                <div class="tp-caption theme_caption3 lfl ltl"
-                    data-x="145"
-                    data-y="170"
+                    data-start="2500"
+                    data-easing="easeOutExpo">MEET THE STUDENTS...</div>
+                <div class="tp-caption bold_brown_text lfl ltl"
+                    data-x="720"
+                    data-y="65"
                     data-speed="600"
-                    data-start="2400"
-                    data-easing="easeOutExpo">
-                    Lorem ipsum dolor sit amet, eum cu sint dolores, dicat<br>
-                    possit malorum at sit, ut natum assentior mea. Mel congue malorum te, eu <br>
-                    cum blandit salutatus comprehensam, atqui causae ancillae cum ei. <br>
-                    His eu ignota praesent democritum.
+                    data-start="2700"
+                    data-easing="easeOutExpo"
+                    style="text-shadow: 0px 0px 2px #999">
+                    We gathered bright and inquisitive minds<br>
+                    from around the world, fed them a diet of Ruby,<br>
+                    Rails, JavaScript, and SQL, and watched <br>
+                    them bloom into full-stack junior devs. <br>
+                    We couldn't be prouder. <br>
+                    And we couldn't be more impressed with <br>
+                    their accomplishments.
                 </div>
-                <div class="caption btn btn-flat flat-primary btn-bordered sfb stb"  
-                    data-x="145"
-                    data-y="280"
-                    data-speed="300" 
-                    data-start="2600"
-                    data-easing="easeOutExpo"><a href="#" class="">Learn More</a>
-                </div>
-                <div class="caption btn btn-flat flat-color sfb stb"
-                    data-x="265" 
-                    data-y="280"
-                    data-speed="300"
-                    data-start="2800" 
-                    data-easing="easeOutExpo"><a href="#" class="">Purchase Now</a>
-                </div>
-                <div class="caption lfr ltr"
-                    data-x="685"
-                    data-y="0"
+                <div class="tp-caption modern_medium_fat sft stt" style="text-shadow: 0px 0px 10px #fff"
+                    data-x="720"
+                    data-y="235"
                     data-speed="300"
                     data-start="3000"
-                    data-easing="easeOutExpo"><img src="assets/img/slides/imac.png" alt="Slide Image"></div>
+                    data-easing="easeOutExpo">See what the</div>
+                <div class="tp-caption modern_medium_light sft stt" style="text-shadow: 0px 0px 10px #fff"
+                    data-x="890"
+                    data-y="235"
+                    data-speed="300"
+                    data-start="3000"
+                    data-easing="easeOutExpo">EXCITEMENT</div>
+                <div class="tp-caption modern_medium_fat sft stt" style="text-shadow: 0px 0px 10px #fff"
+                    data-x="1030"
+                    data-y="235"
+                    data-speed="300"
+                    data-start="3000"
+                    data-easing="easeOutExpo">is all about.</div>
+                </span>
+                <div class="caption btn btn-flat flat-danger sfb stb"
+                    data-x="720"
+                    data-y="280"
+                    data-speed="300" 
+                    data-start="3100"
+                    data-easing="easeOutExpo"><a href="/students">View Student Profiles</a>
+                </div>
+                <div class="caption btn btn-flat flat-color sfb stb"
+                    data-x="720" 
+                    data-y="328"
+                    data-speed="300"
+                    data-start="3100" 
+                    data-easing="easeOutExpo"><a href="/projects">Show Me the Projects!</a>
+                </div>
+                <div class="caption boxshadow lfr ltr"
+                    data-x="-50"
+                    data-y="0"
+                    data-speed="300"
+                    data-start="2000"
+                    data-easing="easeOutExpo"><%= image_tag "flatiron-students.jpg", width: '714px', height: '400px' %></div>
             </li>
         </ul>
         <div class="tp-bannertimer tp-bottom"></div>
