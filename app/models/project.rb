@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
   has_many :project_app_types, dependent: :destroy
   has_many :app_types, through: :project_app_types
   validates :github_id, :uniqueness => true
+  before_save :remove_empty_strings
    
   def take_app_screenshot!
     self.fix_url_ends
@@ -77,5 +78,11 @@ class Project < ActiveRecord::Base
 
   def brief_description
     super || "[DESCRIPTION PENDING]"
+  end
+
+  def remove_empty_strings
+    [:brief_description, :longer_description, :technologies].each do |attr|
+      self.send("#{attr}=", nil) if self.send(attr) == ""
+    end
   end
 end
