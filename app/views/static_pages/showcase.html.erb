@@ -5,62 +5,74 @@
         <% @projects.each_with_index do |project, index| %>
           <li data-transition="fade" data-slotamount="10" data-masterspeed="300">
               <img src="/assets/slider-backgrounds/<%= @colors.take(index + 1).last %>.png" alt="Slide Image">
-              <div class="caption sft stt tp-caption start modern_big_bluebg"
-                  data-x="251"
-                  data-y="75"
-                  data-speed="300"
-                  data-start="2000"
-                  data-easing="easeOutExpo">WELCOME TO</div>
               <div class="caption sft stt tp-caption start modern_big_redbg"
-                  data-x="89"
-                  data-y="118"
+                  data-x="583"
+                  data-y="60"
                   data-speed="300"
                   data-start="2200"
-                  data-easing="easeOutExpo">THE FLATIRON SHOWCASE</div>
+                  data-easing="easeOutExpo"><%= project.display_name.upcase %></div>
               <div class="tp-caption theme_caption4 lft ltt"
-                  data-x="113"
-                  data-y="158"
+                  data-x="583"
+                  data-y="105"
                   data-speed="300"
                   data-start="2400"
-                  data-easing="easeOutExpo">PREPARE TO BE AMAZED</div>
-              <div class="caption theme_caption1 sft stt"
-                  data-x="144"
-                  data-y="198"
-                  data-speed="600"
-                  data-start="2600"
-                  data-easing="easeOutExpo">
-                  <div>
-                      <p style="margin-top:3px; margin-right: 5px">AT WHAT FLATIRON STUDENTS</p>
-                      <p>HAVE CREATED WITHIN</p>
-                      <p style="margin-bottom:5px;">60 DAYS OF PROGRAMMING</p>
-                  </div>
-              </div>
-              <a href="http://theflatironschool.com" target="_blank"
+                  data-easing="easeOutExpo"><%= project.brief_description %></div>
+              <% if project.longer_description %>
+                <div class="tp-caption medium_grey sft stt"
+                    data-x="583"
+                    data-y="150"
+                    data-speed="600"
+                    data-start="2600"
+                    data-easing="easeOutExpo" style="background: rgba(140, 140, 140, 0.8); height: 200px; overflow: auto; text-wrap: wrap; padding: 10px">
+                    <div>
+                        <% split_to_length(project.longer_description, 50).each do |str| %>
+                          <p><%= str %></p>
+                        <% end %>
+                    </div>
+                </div>
+              <% end %>
+              <a href="/projects/<%= project.id %>"
                   class="caption btn btn-flat flat-success sfb stb" 
-                  data-x="318"
-                  data-y="297"
+                  data-x="615"
+                  data-y="360"
                   data-speed="300" 
                   data-start="2800"
-                  data-easing="easeOutExpo">About the School</a>
-              <a href="/projects"
+                  data-easing="easeOutExpo">More About this Project</a>
+              <a href="<%= "http://#{project.live_app_url}" %>" target="_blank"
                   class="caption btn btn-flat flat-color sfb stb"  
-                  data-x="318" 
-                  data-y="345" 
+                  data-x="855" 
+                  data-y="360" 
                   data-speed="300"
                   data-start="3000"
-                  data-easing="easeOutExpo">See the Projects!</a>
-              <div class="caption boxshadow lfr ltr"
-                  data-x="470" 
-                  data-y="0" 
+                  data-easing="easeOutExpo">See the Project Live!</a>
+              <%= new_tab_link project do %>
+                <div class="caption boxshadow lfl ltr"
+                    data-x="0" 
+                    data-y="30" 
+                    data-speed="900"
+                    data-start="1200" 
+                    data-easing="easeOutBack"><%= image_tag '../' + project.screenshot_path + "_medium.png" %></div>
+              <% end %>
+              <div class="caption sft ltr"
+                  data-x="0" 
+                  data-y="460" 
                   data-speed="900"
                   data-start="1200" 
-                  data-easing="easeOutBack"><iframe src="http://player.vimeo.com/video/62294626?title=0&amp;byline=0&amp;portrait=0" width="711" height="400"></iframe></div>
+                  data-easing="easeOutBack" style="margin-right: 50px">
+                  <div class="showcase-project-students clearfix text-justify" style="max-height: 150px; <%= "min-width: #{project.users.size < 5 ? 120 * project.users.size + 1 : 600}px;" %> padding: 10px; overflow: auto; line-height: 10px; background-color: rgba(100, 100, 100, 0.4)">
+                    <% project.users.each do |user| %>
+                        <%= link_to user do %>
+                          <img src="<%= user.avatar_url %>" alt="Member Image" height="100" width="100" style="margin: 10px">
+                        <% end %>
+                    <% end %>
+                  </div>
+              </div>
           </li>
         <% end %>
       </ul>
       <div class="tp-bannertimer tp-bottom"></div>
   </div>
-</div>
+</section>
 <script type="text/javascript">
 
   var revapi;
@@ -71,7 +83,7 @@
       {
         delay:15000,
         startwidth:1170,
-        startheight: 500,
+        startheight: 800,
         hideThumbs:10,
         fullWidth:"off",
         fullScreen:"on",
