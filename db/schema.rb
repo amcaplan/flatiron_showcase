@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411201256) do
+ActiveRecord::Schema.define(version: 20140418124312) do
 
   create_table "app_types", force: true do |t|
     t.string   "name"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20140411201256) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "github_login"
+    t.boolean  "display"
   end
 
 end

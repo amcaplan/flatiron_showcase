@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
       avatar_url: user_info.avatar_url)
   end
 
+  def self.visible_users
+    self.where(display: true).all
+  end
+
   def github_auth
     @github_auth ||= self.authorizations.where.not(github_uid: nil).first
   end
