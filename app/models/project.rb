@@ -10,22 +10,27 @@ class Project < ActiveRecord::Base
     self.fix_url_ends
 
     ws = Webshot::Screenshot.instance
-     
+    
     full_live_app_url = self.live_app_url + "/"
-    timestamp = Time.now.strftime("%Y%m%d%H%M%S")
-    image_filename = timestamp + "_" + self.display_name.downcase.gsub(/[\s\?\'\"]/, "_")
+    image_filename = self.image_filename
+    
     self.screenshot_path = "assets/project-images/" + image_filename
-    saving_dir = "./public/assets/project-images/"
+    save_path = "./public/#{self.screenshot_path}"
 
-    large_image = image_filename + "_large.png"
-    medium_image = image_filename + "_medium.png"
-    small_image = image_filename + "_small.png"
-    thumb_image = image_filename + "_thumb.png"
+    large_image = "#{save_path}_large.png"
+    medium_image = "#{save_path}_medium.png"
+    small_image = "#{save_path}_small.png"
+    thumb_image = "#{save_path}_thumb.png"
 
-    ws.capture full_live_app_url, saving_dir + large_image, timeout: 1, width: 960, height: 420, quality: 85
-    ws.capture full_live_app_url, saving_dir + medium_image, timeout: 1, width: 583, height: 407, quality: 85
-    ws.capture full_live_app_url, saving_dir + small_image, timeout: 1, width: 290, height: 193, quality: 85
-    ws.capture full_live_app_url, saving_dir + thumb_image, timeout: 1, width: 64, height: 64, quality: 85
+    ws.capture full_live_app_url, large_image, timeout: 1, width: 960, height: 420, quality: 85
+    ws.capture full_live_app_url, medium_image, timeout: 1, width: 583, height: 407, quality: 85
+    ws.capture full_live_app_url, small_image, timeout: 1, width: 290, height: 193, quality: 85
+    ws.capture full_live_app_url, thumb_image, timeout: 1, width: 64, height: 64, quality: 85
+  end
+
+  def image_filename
+    timestamp = Time.now.strftime("%Y%m%d%H%M%S")
+    timestamp + "_" + self.display_name.downcase.gsub(/[\s\?\'\"]/, "_")
   end
 
   def add_no_screenshot_available_image
