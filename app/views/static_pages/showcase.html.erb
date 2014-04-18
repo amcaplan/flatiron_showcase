@@ -53,19 +53,18 @@
                     data-start="1200" 
                     data-easing="easeOutBack"><%= image_tag '../' + project.screenshot_path + "_medium.png" %></div>
               <% end %>
-              <div class="caption sft ltr"
+              <div class="caption sft ltr clearfix"
                   data-x="0" 
                   data-y="460" 
                   data-speed="900"
                   data-start="1200" 
                   data-easing="easeOutBack" style="margin-right: 50px">
-                  <div class="showcase-project-students clearfix text-justify" style="max-height: 150px; <%= "min-width: #{project.users.size < 5 ? 120 * project.users.size + 1 : 600}px;" %> padding: 10px; overflow: auto; line-height: 10px; background-color: rgba(100, 100, 100, 0.4)">
                     <% project.users.each do |user| %>
                         <%= link_to user do %>
-                          <img src="<%= user.avatar_url %>" alt="Member Image" height="100" width="100" style="margin: 10px">
+                          <%# binding.pry if project.id == 27 %>
+                          <img src="<%= user.avatar_url %>" alt="Member Image" height="<%= image_size(project) %>" width="<%= image_size(project) %>" style="margin: <%= image_size(project) / 10 %>px; display: block; float: left;">
                         <% end %>
                     <% end %>
-                  </div>
               </div>
           </li>
         <% end %>
