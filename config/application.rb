@@ -7,6 +7,8 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
+require "carrierwave"
+require_relative "../app/uploaders/screenshot_uploader"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems

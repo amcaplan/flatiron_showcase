@@ -65,3 +65,5 @@ gem "figaro", github: 'laserlemon/figaro'
 gem 'rails-erd'
 
 gem "webshot"
+
+gem "carrierwave"
