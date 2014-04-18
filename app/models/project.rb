@@ -29,7 +29,7 @@ class Project < ActiveRecord::Base
   end
 
   def add_no_screenshot_available_image
-    # TODO Add this method
+    self.screenshot_path = "assets/project-images/not_available"
   end
 
   def screenshots
