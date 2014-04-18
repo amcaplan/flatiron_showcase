@@ -51,7 +51,7 @@
                     data-y="30" 
                     data-speed="900"
                     data-start="1200" 
-                    data-easing="easeOutBack"><%= image_tag '../' + project.screenshot_path + "_medium.png" %></div>
+                    data-easing="easeOutCirc"><%= image_tag('../' + project.screenshot_path + "_medium.png") %></div>
               <% end %>
               <div class="caption sft ltr clearfix"
                   data-x="0" 
@@ -61,7 +61,6 @@
                   data-easing="easeOutBack" style="margin-right: 50px">
                     <% project.users.each do |user| %>
                         <%= link_to user do %>
-                          <%# binding.pry if project.id == 27 %>
                           <img src="<%= user.avatar_url %>" alt="Member Image" height="<%= image_size(project) %>" width="<%= image_size(project) %>" style="margin: <%= image_size(project) / 10 %>px; display: block; float: left;">
                         <% end %>
                     <% end %>
@@ -91,7 +90,6 @@
         navigationType: "bullet",
         navigationArrows: "nexttobullet",
         navigationStyle: "round",
-        navigationHAlign: "left",
         navigationVAlign: "bottom",
         navigationHOffset: 30,
         navigationVOffset: 30,
@@ -105,7 +103,9 @@
         soloArrowRightHalign: "right",
         soloArrowRightValign: "center",
         soloArrowRightHOffset: 20,
-        soloArrowRightVOffset: 0
+        soloArrowRightVOffset: 0,
+
+        shadow: "none"
 
       });
 
