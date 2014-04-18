@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
 
   def last_commit
     if !@last_commit
-      commit_hash = self.client.user_events(self.name).select { |event|
+      commit_hash = self.client.user_events(self.github_login).select { |event|
         event.type == "PushEvent"
       }.first
       datetime = commit_hash.created_at.strftime("%m/%d/%Y at %I:%M%p")
