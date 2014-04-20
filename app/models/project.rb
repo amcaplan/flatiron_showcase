@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
 
     ws = Webshot::Screenshot.instance
     
-    full_live_app_url = self.live_app_url + "/"
+    full_app_url = self.live_app_url + "/"
     image_filename = self.image_filename
     
     self.screenshot_path = "assets/project-images/" + image_filename
@@ -22,10 +22,10 @@ class Project < ActiveRecord::Base
     small_image = "#{save_path}_small.png"
     thumb_image = "#{save_path}_thumb.png"
 
-    ws.capture full_live_app_url, large_image, timeout: 1, width: 960, height: 420, quality: 85
-    ws.capture full_live_app_url, medium_image, timeout: 1, width: 583, height: 407, quality: 85
-    ws.capture full_live_app_url, small_image, timeout: 1, width: 290, height: 193, quality: 85
-    ws.capture full_live_app_url, thumb_image, timeout: 1, width: 64, height: 64, quality: 85
+    ws.capture full_app_url, large_image, timeout: 1, width: 960, height: 420, quality: 85
+    ws.capture full_app_url, medium_image, timeout: 1, width: 583, height: 407, quality: 85
+    ws.capture full_app_url, small_image, timeout: 1, width: 290, height: 193, quality: 85
+    ws.capture full_lpp_url, thumb_image, timeout: 1, width: 64, height: 64, quality: 85
   end
 
   def image_filename
