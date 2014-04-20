@@ -1,0 +1,25 @@
+<div class="container wrapper-2">
+    <h5 class="subpage-title">Current Project Images</h5>
+    <% @project.medium_images.each_slice(4) do |slice| %>
+        <div class="row">
+          <% slice.each do |image| %>
+            <div id="image" class="col-md-3 image-container" data-image-num="<%= image.id %>">
+                <div class="team-member-thumb">
+                    <%= image_tag image.url, class: "img-responsive" %>
+                </div>
+                <br>
+                <div class="text-center">
+                    <a class="btn btn-small btn-primary set-as-primary<%= " disabled" if image.primary %>">Set As Primary</a>
+                </div>
+                <br>
+                <div class="text-center">
+                    <a class="btn btn-small btn-danger delete-image<%= " disabled" if @project.project_images.size == 1 %>">Delete Image</a>
+                </div>
+            </div>
+          <% end %>
+        </div>
+        <!-- /.row -->
+        <br><br>
+    <% end %>
+</div>
+<!-- /.container -->

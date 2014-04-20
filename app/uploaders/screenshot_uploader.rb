@@ -34,7 +34,7 @@ class ScreenshotUploader < CarrierWave::Uploader::Base
   end
 
   version :medium do
-    process :resize_to_fill => [583, 407, 'NorthWest']
+    process :resize_to_fill => [583, 407, 'North']
   end
 
   version :small do

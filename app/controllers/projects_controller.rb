@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :images, :upload_image]
-  before_action :check_user_authorized, only: [:new, :edit, :update, :destroy]
+  before_action :set_project, except: [:index, :new, :create]
+  before_action :check_user_authorized, except: [:index, :show]
 
   # GET /projects
   # GET /projects.json
@@ -124,11 +124,36 @@ class ProjectsController < ApplicationController
   end
 
   def images
+    @primary_project_image = @project.primary_project_image
+    @primary_image = @primary_project_image.image
+    @page_name = "Edit Images for #{@project.display_name}"
   end
 
   def upload_image
     @project.add_image(params[:image])
     redirect_to images_project_path(@project)
+  end
+
+  def set_primary_image
+    primary_image = ProjectImage.find(params[:project_image_id])
+    @project.set_primary_image_to(primary_image)
+    render_primary_image_only
+  end
+
+  def destroy_image
+    if @project.project_images.length > 1
+      primary_project_image_id = @project.primary_project_image.id
+      ProjectImage.find(params[:project_image_id]).destroy
+      if primary_project_image_id == params[:project_image_id].to_i
+        @project.set_primary_image_to(@project.project_images.first)
+      end
+      render_primary_image_only
+    end # else an error will be raised and the page won't be updated!
+  end
+
+  def new_screenshot
+    @project.take_app_screenshot!
+    render partial: 'current_images'
   end
 
   private
@@ -164,5 +189,11 @@ class ProjectsController < ApplicationController
           end
         end
       end
+    end
+
+    def render_primary_image_only
+      @primary_image = @project.primary_image
+      @primary_project_image = @project.primary_project_image
+      render partial: 'primary_image', layout: false
     end
 end
