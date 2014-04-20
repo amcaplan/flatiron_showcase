@@ -104,7 +104,9 @@
                     <%= link_to "Edit", edit_project_path, class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
                 </div>
                 <div class="col-md-6">
+                    <% if @project.users.include? current_user %>
                     <%= link_to "Delete", @project, :method => "delete", class: "btn btn-flat flat-danger btn-rounded btn-lg btn-block" %>
+                    <% end %>
                 </div>
             </div>
         </div>
