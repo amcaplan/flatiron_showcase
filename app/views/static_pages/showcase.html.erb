@@ -38,7 +38,7 @@
                   data-speed="300" 
                   data-start="2800"
                   data-easing="easeOutExpo">More About this Project</a>
-              <a href="<%= "http://#{project.live_app_url}" %>" target="_blank"
+              <a href="<%= project.live_app_url %>" target="_blank"
                   class="caption btn btn-flat flat-color sfb stb"  
                   data-x="855" 
                   data-y="360" 
@@ -51,7 +51,7 @@
                     data-y="30" 
                     data-speed="900"
                     data-start="1200" 
-                    data-easing="easeOutCirc"><%= image_tag('../' + project.screenshot_path + "_medium.png") %></div>
+                    data-easing="easeOutCirc"><%= image_tag project.primary_image.medium.url %></div>
               <% end %>
               <div class="caption sft ltr clearfix"
                   data-x="0" 

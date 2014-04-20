@@ -7,39 +7,60 @@ class Project < ActiveRecord::Base
   validates :github_id, :uniqueness => true
   before_save :remove_empty_strings
    
+  def add_image(image, primary = false)
+    pi = ProjectImage.new
+    pi.project = self
+    pi.image = image
+    pi.primary_image = true if primary
+    pi.save!
+  end
+
   def take_app_screenshot!
     self.fix_url_ends
-
-    ws = Webshot::Screenshot.instance
-    
+    self.save
     full_app_url = self.live_app_url + "/"
-    image_filename = self.image_filename
-    
-    self.screenshot_path = "assets/project-images/" + image_filename
-    save_path = "./public/#{self.screenshot_path}"
 
-    large_image = "#{save_path}_large.png"
-    medium_image = "#{save_path}_medium.png"
-    small_image = "#{save_path}_small.png"
-    thumb_image = "#{save_path}_thumb.png"
-
-    ws.capture full_app_url, large_image, timeout: 1, width: 960, height: 420, quality: 85
-    ws.capture full_app_url, medium_image, timeout: 1, width: 583, height: 407, quality: 85
-    ws.capture full_app_url, small_image, timeout: 1, width: 290, height: 193, quality: 85
-    ws.capture full_lpp_url, thumb_image, timeout: 1, width: 64, height: 64, quality: 85
+    begin
+      ws = Webshot::Screenshot.instance
+      img_path = "public/assets/project-images/#{self.id}.png"
+      ws.capture full_app_url, img_path, timeout: 2, width: 1166, height: 814, quality: 85
+      add_image(File.open(img_path), true)
+      File.delete(img_path)
+      if self.primary_image.url.end_with?('not_available.jpg')
+        unavailable = self.primary_project_image
+        self.set_primary_image_to(self.project_images.last)
+        unavailable.remove_image!
+        unavailable.destroy
+      end
+    rescue
+      add_image(File.open("app/assets/images/not_available.jpg"), true)
+    end
   end
 
-  def image_filename
-    timestamp = Time.now.strftime("%Y%m%d%H%M%S")
-    timestamp + "_" + self.display_name.downcase.gsub(/[\s\?\'\"]/, "_")
+  def screenshot_path
+    self.primary_image.large.url
   end
 
-  def add_no_screenshot_available_image
-    self.screenshot_path = "assets/project-images/not_available"
+  def primary_image
+    self.primary_project_image.image
+  end
+
+  def primary_project_image
+    self.project_images.find_by(primary_image: true)
+  end
+
+  def set_primary_image_to(project_image)
+    self.primary_project_image.update_attributes(primary_image: false)
+    project_image.primary_image = true
+    project_image.save
+  end
+
+  def screenshots
+    self.large_images
   end
 
   def method_missing(meth, *args)
-    if meth.to_s.end_with?("_images")
+    if meth.to_s.end_with?("_images") # e.g., .large_images
       self.project_images.map do |p_i|
         p_i.image.send(meth.to_s[0..-8]).url
       end 
@@ -75,10 +96,6 @@ class Project < ActiveRecord::Base
     rescue
       "No Commits Yet"
     end
-  end
-
-  def images
-    ["https://www.google.com/images/srpr/logo11w.png", "https://www.google.com/images/srpr/logo11w.png", "https://www.google.com/images/srpr/logo11w.png"]
   end
 
   def github_url
