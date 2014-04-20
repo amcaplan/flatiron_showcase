@@ -1,0 +1,23 @@
+<div class="container wrapper-2">
+    <h5 class="subpage-title">Current Primary Image</h5>
+    <div id="primary-image" data-image-num="<%= @primary_project_image.id %>">
+        <div class="team-member-thumb">
+            <h5>Large Version</h5>
+            <%= image_tag @primary_image.large.url, class: "img-responsive" %>
+        </div>
+        <div class="team-member-thumb">
+            <h5>Medium Version</h5>
+            <%= image_tag @primary_image.medium.url, class: "img-responsive" %>
+        </div>
+        <div class="team-member-thumb">
+            <h5>Small Version</h5>
+            <%= image_tag @primary_image.small.url, class: "img-responsive" %>
+        </div>
+        <div class="team-member-thumb">
+            <h5>Thumbnail</h5>
+            <%= image_tag @primary_image.thumb.url, class: "img-responsive" %>
+        </div>
+        <br>
+    </div>
+    <br><br>
+</div>

@@ -1,53 +1,28 @@
-<section id="current-images" class="section">
-    <div class="container wrapper-2">
-        <h5 class="subpage-title">Current Project Images</h5>
-        <% @project.medium_images.each_slice(4).with_index do |slice, slice_index| %>
-            <div class="row">
-              <% slice.each_with_index do |image, image_index| %>
-                <div id="image-<%= slice_index * 4 + image_index %>" class="col-md-3">
-                    <div class="team-member-thumb">
-                        <%= image_tag image.url, class: "img-responsive" %>
-                    </div>
-                    <br>
-                    <div class="text-center">
-                        <a class="btn btn-small btn-primary<%= " disabled" if image.primary %>">Set As Primary</a>
-                    </div>
-                    <br>
-                    <div class="text-center">
-                        <a class="btn btn-small btn-danger<%= " disabled" if @project.project_images.size == 1 %>">Delete Image</a>
-                    </div>
-                </div>
-              <% end %>
-            </div>
-            <!-- /.row -->
-            <br><br>
-        <% end %>
-    </div>
-    <!-- /.container -->
+<section id="current-images" class="section colored-wrapper">
+    <%= render partial: 'current_images' %>
 </section>
+
+<section id="primary-image-section" class="section">
+    <%= render partial: 'primary_image' %>
+</section>
+
 <section id="image-upload" class="section colored-wrapper">
     <div class="container">
-      <%= form_tag({action: :upload_image}, multipart: true) do %>
-        <h5>Upload a new image (we recommend a large image with extra vertical and horizontal space):</h5><br>
-        <%= file_field_tag :image, id: "new-project-image" %>
-        <br>
-        <%= submit_tag "Upload", id: "project-image-upload-button", class: "btn btn-primary disabled" %>
-      <% end %>
+        <div class="row">
+            <div class="col-md-6">
+              <%= form_tag({action: :upload_image}, multipart: true) do %>
+                <h5 class="subpage-title">Upload a new image</h5>
+                <h5>We recommend a large image with extra vertical and horizontal space.</h5><br>
+                <%= file_field_tag :image, id: "new-project-image" %>
+                <br>
+                <%= submit_tag "Upload", id: "project-image-upload-button", class: "btn btn-primary disabled" %>
+              <% end %>
+            </div>
+            <div class="col-md-6">
+                <h5 class="subpage-title">Generate a new image</h5>
+                <button id="take-screenshot" class="btn btn-primary">Take a Screenshot!</button>
+            </div>
+        </div>
     </div>
 </section>
-<!-- page-specific javascript -->
-<script type="text/javascript">
-    var selectivelyActivateUploadButton = function(){
-        $('#new-project-image').change(function(){
-            if ($(this).val()) {
-                $('#project-image-upload-button').removeClass('disabled');
-            } else {
-                $('#project-image-upload-button').addClass('disabled');
-            }
-        });
-    };
-
-    $(document).ready(function(){
-        selectivelyActivateUploadButton();
-    });
-</script>
+<%= render partial: 'project_image_javascripts' %>

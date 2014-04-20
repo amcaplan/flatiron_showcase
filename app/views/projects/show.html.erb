@@ -28,9 +28,9 @@
                         <% end %>
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner">
-                            <% @project.screenshots.each_with_index do |url, index| %>
+                            <% @project.screenshots.each_with_index do |image, index| %>
                             <div class="item <%= "active" if index == 0 %>">
-                                <img src="<%= url %>" class="img-responsive" alt="Carousel Image">
+                                <img src="<%= image.url %>" class="img-responsive" alt="Carousel Image">
                             </div>
                             <% end %>
                         </div>

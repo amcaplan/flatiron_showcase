@@ -3,6 +3,10 @@ Rails.application.routes.draw do
     member do
       get 'images'
       post 'images', to: 'projects#upload_image'
+      post 'set-primary-image/:project_image_id', to: 'projects#set_primary_image'
+      post 'new-screenshot', to: 'projects#new_screenshot'
+      # Can't do delete because it's done through Ajax
+      post 'images/:project_image_id/destroy', to: 'projects#destroy_image'
     end
   end
 

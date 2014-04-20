@@ -31,7 +31,8 @@ class Project < ActiveRecord::Base
         end
       end
 
-      add_image(File.open(img_path), true)
+      should_be_primary = true unless self.primary_project_image
+      add_image(File.open(img_path), should_be_primary)
       File.delete(img_path)
       if self.primary_image.url.end_with?('not_available.jpg')
         unavailable = self.primary_project_image
@@ -40,7 +41,7 @@ class Project < ActiveRecord::Base
         unavailable.destroy
       end
     rescue
-      add_image(File.open("app/assets/images/not_available.jpg"), true)
+      add_image(File.open("app/assets/images/not_available.jpg"), should_be_primary)
     end
   end
 
@@ -57,7 +58,10 @@ class Project < ActiveRecord::Base
   end
 
   def set_primary_image_to(project_image)
-    self.primary_project_image.update_attributes(primary_image: false)
+    begin
+      self.primary_project_image.update_attributes(primary_image: false)
+    rescue # if no primary image exists
+    end
     project_image.primary_image = true
     project_image.save
   end
@@ -66,13 +70,14 @@ class Project < ActiveRecord::Base
     self.large_images
   end
 
-  Image = Struct.new(:primary, :url)
+  Image = Struct.new(:primary, :url, :id)
 
   def method_missing(meth, *args)
     if meth.to_s.end_with?("_images") # e.g., .large_images
       self.project_images.map do |p_i|
         Image.new(p_i.primary_image,
-          p_i.image.send(meth.to_s[0..-8]).url)
+          p_i.image.send(meth.to_s[0..-8]).url,
+          p_i.id)
       end 
     else
       super
