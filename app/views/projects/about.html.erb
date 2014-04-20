@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content-wrapper">
+        <div class="container wrapper-2">
+          <h5 class="subpage-title">Motivation</h5>
+          <h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </h5>
+        </div>
+      <section id="team-4-columns" class="section">
+        <div class="container wrapper-2">
+          <h5 class="subpage-title">Developers</h5>
+            <% dev1 = User.all.find_by(:github_login => "amcaplan") %>
+            <% dev2 = User.all.find_by(:github_login => "bokwon") %>
+            <% dev_team = [] %>
+            <% dev_team << dev1 %>
+            <% dev_team << dev2 %>
+            <% dev_team.each do |dev| %>
+            <div class="col-md-3 team-member-wrapper">
+                <div class="team-member">
+                    <div class="team-member-thumb">
+                        <img src="<%= dev.avatar_url %>" class="img-responsive" alt="Member Image">
+                        <%= link_to dev do %><div class="overlay"></div><% end %>
+                        <ul class="member-social">
+                            <li>
+                              <a href="<%= dev.github_url %>" target="_blank"><i class="icon-github"></i></a>
+                            </li>
+                            <% if dev.twitter_handle %>
+                              <li><a href="http://twitter.com/<%= dev.twitter_handle %>" target="_blank"><i class="icon-twitter"></i></a></li>
+                            <% end %>
+                            <% if dev.linkedin_url %>
+                              <li><a href="http://<%= dev.linkedin_url %>" target="_blank"><i class="icon-linkedin"></i></a></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                    <%= link_to dev do %>
+                      <div class="team-member-info">
+                          <h5><%= link_to dev.name %></h5>
+                      </div>
+                   <% end %>
+                </div>
+            </div>
+           <% end %>
+          </div>
+       
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /#team-3-columns -->
+      <br>
+    </div>
+  </div>
+</div>
