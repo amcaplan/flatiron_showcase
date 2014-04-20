@@ -65,7 +65,9 @@
                     </ul>
                 </div>
                 <div class="col-md-8">
-                <%= link_to "Edit", edit_user_path, class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
+                <% if @user == current_user %>
+                    <%= link_to "Edit My Info", edit_user_path, class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
+                <% end %>
                 </div>
             </div>
         </div>

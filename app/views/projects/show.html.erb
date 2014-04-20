@@ -45,6 +45,13 @@
                         <% end %>
                     </div>
                 </div>
+                <div class="text-center">
+                    <div class="col-md-6 center-block col-centered clearfix">
+                        <% if @project.users.include? current_user %>
+                            <%= link_to "Edit Images", images_project_path(@project), class: "btn btn-flat btn-primary btn-rounded btn-lg btn-block" %>
+                        <% end %>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4 item-details">
                 <div class="wrapper-1">
@@ -100,14 +107,14 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-6">
-                    <%= link_to "Edit", edit_project_path, class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
-                </div>
-                <div class="col-md-6">
-                    <% if @project.users.include? current_user %>
-                    <%= link_to "Delete", @project, :method => "delete", class: "btn btn-flat flat-danger btn-rounded btn-lg btn-block" %>
-                    <% end %>
-                </div>
+                <% if @project.users.include? current_user %>
+                    <div class="col-md-6">
+                        <%= link_to "Edit", edit_project_path, class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
+                    </div>
+                    <div class="col-md-6">
+                        <%= link_to "Delete", @project, :method => "delete", class: "btn btn-flat flat-danger btn-rounded btn-lg btn-block" %>
+                    </div>
+                <% end %>
             </div>
         </div>
         <div class="row">
