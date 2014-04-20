@@ -77,7 +77,7 @@
               <% @user.projects.each do |project| %>
                 <div class="col-xs-12 col-sm-6 col-md-4 wrapper-1">
                     <div class="service service-3">
-                        <span class="service-icon"><%= link_to raw("<img src=\"/#{project.screenshot_path}_thumb.png\" alt=\"#{project.display_name}\">"), project %></span>
+                        <span class="service-icon"><%= link_to raw("<img src=\"#{project.primary_image.thumb.url}\" alt=\"#{project.display_name}\">"), project %></span>
                         <h4><%= link_to project.display_name, project %></h4>
                         <p><%= project.brief_description || "Description not found." %></p>
                     </div>

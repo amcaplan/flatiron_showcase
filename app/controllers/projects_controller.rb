@@ -64,29 +64,12 @@ class ProjectsController < ApplicationController
 
     #call method to take a screenshot
     @projects.each do |project|
-      begin
-        project.take_app_screenshot!
-      rescue
-        project.add_no_screenshot_available_image
-      end
+      project.take_app_screenshot!
     end
     
     projects_saved = @projects.all?(&:save)
 
-    @projects.each do |project|
-      client = current_user.github_auth.client
-      collaborators = client.collabs(project.name)
-      collaborators.each do |collaborator|
-        login = collaborator.login
-        existing_user = User.find_by(github_login: login)
-        if existing_user
-          project.users << existing_user
-        else
-          project.users << User.create_from_hash(collaborator)
-        end
-      end
-
-    end
+    add_collaborators(@projects)
 
     respond_to do |format|
       if projects_saved
@@ -144,11 +127,7 @@ class ProjectsController < ApplicationController
   end
 
   def upload_image
-    pi = ProjectImage.new
-    pi.project = @project
-    pi.image = params[:image]
-    pi.save!
-    
+    @project.add_image(params[:image])
     redirect_to images_project_path(@project)
   end
 
@@ -169,5 +148,21 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params(project)
       project.permit(:name, :github_id, :live_app_url, :display_name, :technologies, :brief_description, :longer_description, app_type: [])
+    end
+
+    def add_collaborators(projects)
+      projects.each do |project|
+        client = current_user.client
+        collaborators = client.collabs(project.name)
+        collaborators.each do |collaborator|
+          login = collaborator.login
+          existing_user = User.find_by(github_login: login)
+          if existing_user
+            project.users << existing_user
+          else
+            project.users << User.create_from_hash(collaborator)
+          end
+        end
+      end
     end
 end
