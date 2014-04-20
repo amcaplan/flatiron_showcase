@@ -23,7 +23,14 @@ class Project < ActiveRecord::Base
     begin
       ws = Webshot::Screenshot.instance
       img_path = "public/assets/project-images/#{self.id}.png"
-      ws.capture full_app_url, img_path, timeout: 2, width: 1166, height: 814, quality: 85
+      ws.capture full_app_url, img_path, timeout: 2, width: 1166, height: 814 do |magick|
+        magick.combine_options do |c|
+          c.background "gray45"
+          c.gravity "north"
+          c.quality 85
+        end
+      end
+
       add_image(File.open(img_path), true)
       File.delete(img_path)
       if self.primary_image.url.end_with?('not_available.jpg')
