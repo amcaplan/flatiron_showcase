@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   has_many :users, through: :user_projects
   has_many :project_app_types, dependent: :destroy
   has_many :app_types, through: :project_app_types
+  has_many :project_images
   validates :github_id, :uniqueness => true
   before_save :remove_empty_strings
    
@@ -37,8 +38,14 @@ class Project < ActiveRecord::Base
     self.screenshot_path = "assets/project-images/not_available"
   end
 
-  def screenshots
-    [self.screenshot_path, self.screenshot_path]
+  def method_missing(meth, *args)
+    if meth.to_s.end_with?("_images")
+      self.project_images.map do |p_i|
+        p_i.image.send(meth.to_s[0..-8]).url
+      end 
+    else
+      super
+    end
   end
 
   def first?
@@ -68,6 +75,10 @@ class Project < ActiveRecord::Base
     rescue
       "No Commits Yet"
     end
+  end
+
+  def images
+    ["https://www.google.com/images/srpr/logo11w.png", "https://www.google.com/images/srpr/logo11w.png", "https://www.google.com/images/srpr/logo11w.png"]
   end
 
   def github_url

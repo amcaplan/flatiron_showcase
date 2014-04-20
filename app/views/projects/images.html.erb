@@ -1,8 +1,32 @@
+<section id="team-4-columns" class="section colored-wrapper">
+    <div class="container wrapper-2">
+        <h5 class="subpage-title">Current Project Images</h5>
+        <% @project.medium_images.each_slice(4).with_index do |slice, slice_index| %>
+            <div class="row">
+              <% slice.each_with_index do |image, image_index| %>
+                <div id="image-<%= slice_index * 4 + image_index %>" class="col-md-3">
+                    <div class="team-member-thumb">
+                        <%= image_tag image, class: "img-responsive" %>
+                    </div>
+                    <br>
+                    <div class="text-center">
+                        <a class="btn btn-small btn-danger">Delete Image</a>
+                    </div>
+                </div>
+              <% end %>
+            </div>
+            <!-- /.row -->
+        <% end %>
+    </div>
+    <!-- /.container -->
+</section>
+<!-- /#team-4-columns --> 
 <section id="images" class="section colored-wrapper">
     <div class="container">
-      <%= form_tag({action: :upload}, multipart: true) do %>
+      <%= form_tag({action: :upload_image}, multipart: true) do %>
         Upload an image (we recommend a large image with extra vertical and horizontal space):<br>
         <%= file_field_tag :image %>
+        <%= submit_tag "Upload" %>
       <% end %>
     </div>
 </section>
