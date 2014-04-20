@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     # update twitter handle, LinkedIn url
     respond_to do |format|
       if @user.update(user_params)
+
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render action: 'show', status: :ok, location: @user }
       else
@@ -59,6 +60,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :twitter_handle, :linkedin_url, :github_url, :avatar_url, :bio, :hireable)
+      params.require(:user).permit(:name, :email, :twitter_handle, :linkedin_url, :github_login, :avatar_url, :bio, :hireable)
     end
 end
