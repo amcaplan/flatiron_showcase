@@ -20,3 +20,4 @@
 
 # Ignore image files
 /public/assets/project-images/*
+/public/uploads

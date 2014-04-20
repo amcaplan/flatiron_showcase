@@ -1,0 +1,8 @@
+<section id="images" class="section colored-wrapper">
+    <div class="container">
+      <%= form_tag({action: :upload}, multipart: true) do %>
+        Upload an image (we recommend a large image with extra vertical and horizontal space):<br>
+        <%= file_field_tag :image %>
+      <% end %>
+    </div>
+</section>
