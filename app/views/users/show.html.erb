@@ -14,7 +14,7 @@
                               <li><a href="http://twitter.com/<%= @user.twitter_handle %>" target="_blank"><i class="icon-twitter"></i></a></li>
                             <% end %>
                             <% if @user.linkedin_url %>
-                              <li><a href="<%= @user.linkedin_url %>" target="_blank"><i class="icon-linkedin"></i></a></li>
+                              <li><a href="http://<%= @user.linkedin_url %>" target="_blank"><i class="icon-linkedin"></i></a></li>
                             <% end %>
                         </ul>
                     </div>
@@ -38,7 +38,7 @@
                         <li class="clearfix">
                             <h6>LinkedIn:</h6>
                             <div class="project-terms">
-                                <%= new_tab_link @user.linkedin_url, @user.linkedin_url %>
+                                <%= new_tab_link "http://"+@user.linkedin_url, "http://"+@user.linkedin_url %>
                             </div>
                         </li>
                         <% end %>
@@ -64,9 +64,12 @@
                         </li>
                     </ul>
                 </div>
+                <div class="col-md-8">
+                <%= link_to "Edit", edit_user_path, class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
+                </div>
             </div>
         </div>
-    </div>
+     </div>
     <!-- /.container -->
 </section>
     <!-- /#short-intro -->
