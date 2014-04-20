@@ -1,49 +1,67 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content-wrapper">
+      <%= form_for(@user) do |f| %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+            <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <br>  
+        <div class="row">
+          <div class="col-md-4">
+          <%= f.label :name, class: "subpage-title" %><br>
+          <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="col-md-4">
+            <%= f.label :email, class: "subpage-title" %><br>
+            <%= f.text_field :email, class: "form-control" %>
+          </div>
+          <div class="col-md-4">
+            <%= f.label :twitter_handle, class: "subpage-title" %><br>
+            <%= f.text_field :twitter_handle, class: "form-control" %>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.label :linkedin_url, class: "subpage-title" %><br>
+            <%= f.text_field :linkedin_url, class: "form-control" %>
+          </div>
+          <div class="col-md-4">
+            <%= f.label :github_login, class: "subpage-title" %><br>
+            <%= f.text_field :github_login, class: "form-control" %>
+          </div>
+          <div class="col-md-4">
+            <%= f.label :avatar_url, class: "subpage-title" %><br>
+            <%= f.text_field :avatar_url, class: "form-control" %>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-8">
+            <%= f.label :bio, class: "subpage-title"%><br>
+            <%= f.text_area :bio, rows: 15, class: "form-control" %>
+          </div>
+          <div class="col-md-4"><br>
+            <%= f.label :hireable, class: "subpage-title" %>
+            <%= f.check_box :hireable %>
+          </div>
+        </div><br>
+        <div class="actions">
+          <div class="col-md-6 center-block col-centered clearfix submit-buttons">
+              <div class="col-md-6">
+                <%= f.submit class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
+              </div>
+              <div class="col-md-6">
+                <%= link_to 'Back', @user, class: "btn btn-flat flat-danger btn-rounded btn-lg btn-block" %>
+              </div>
+          </div>
+        </div><br>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :twitter_handle %><br>
-    <%= f.text_field :twitter_handle %>
-  </div>
-  <div class="field">
-    <%= f.label :linkedin_url %><br>
-    <%= f.text_field :linkedin_url %>
-  </div>
-  <div class="field">
-    <%= f.label :github_url %><br>
-    <%= f.text_field :github_url %>
-  </div>
-  <div class="field">
-    <%= f.label :avatar_url %><br>
-    <%= f.text_field :avatar_url %>
-  </div>
-  <div class="field">
-    <%= f.label :bio %><br>
-    <%= f.text_area :bio %>
-  </div>
-  <div class="field">
-    <%= f.label :hireable %><br>
-    <%= f.check_box :hireable %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

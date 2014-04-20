@@ -140,6 +140,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def about
+    @page_name = "Meet the Flatiron Showcase Developers"
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
