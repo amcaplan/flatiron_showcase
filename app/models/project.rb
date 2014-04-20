@@ -66,10 +66,13 @@ class Project < ActiveRecord::Base
     self.large_images
   end
 
+  Image = Struct.new(:primary, :url)
+
   def method_missing(meth, *args)
     if meth.to_s.end_with?("_images") # e.g., .large_images
       self.project_images.map do |p_i|
-        p_i.image.send(meth.to_s[0..-8]).url
+        Image.new(p_i.primary_image,
+          p_i.image.send(meth.to_s[0..-8]).url)
       end 
     else
       super
