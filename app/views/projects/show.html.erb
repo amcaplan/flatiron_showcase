@@ -122,16 +122,16 @@
         <div class="row">
             <div id="caroufredsel-portfolio-container">
                 <% @other_projects.each do |project| %>
-                    <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper">
+                    <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper"  >
                         <div class="portfolio-item">
                             <div class="portfolio-thumb">
-                                <img src="<%= "#{project.primary_image.medium.url}" %>" class="img-responsive" alt="<%= project.display_name %>">
+                                <img src="<%= "#{project.primary_image.medium.url}" %>" alt="<%= project.display_name %>" class="img-responsive">
                                 <div class="image-overlay"></div>
                                 <a href="<%= "#{project.primary_image.large.url}" %>" rel="prettyPhoto[pp_gal]"  class="portfolio-zoom"><i class="icon-eye-open"></i></a>
                                 <%= link_to raw('<i class="icon-link"></i>'), project, class: "portfolio-link" %>
                             </div>
                             <div class="portfolio-content">
-                                <h5><%= project.display_name %></h5>
+                                <h5><%= link_to project.display_name, project %></h5>
                                 <p><%= project.brief_description %></p>
                             </div>
                         </div>
