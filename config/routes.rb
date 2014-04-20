@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :projects
+  resources :projects do
+    member do
+      get 'images'
+      post 'images', to: 'projects#upload_image'
+    end
+  end
 
   resources :students, except: [:new, :create], as: :users, to: 'users'
 

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :images, :upload_image]
   before_action :check_user_authorized, only: [:new, :edit, :update, :destroy]
 
   # GET /projects
@@ -138,6 +138,18 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
+  end
+
+  def images
+  end
+
+  def upload_image
+    pi = ProjectImage.new
+    pi.project = @project
+    pi.image = params[:image]
+    pi.save!
+    
+    redirect_to images_project_path(@project)
   end
 
   private
