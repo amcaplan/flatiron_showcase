@@ -100,12 +100,18 @@
                         </li>
                     </ul>
                 </div>
+                <div class="col-md-6">
+                    <%= link_to "Edit", edit_project_path, class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
+                </div>
+                <div class="col-md-6">
+                    <%= link_to "Delete", @project, :method => "delete", class: "btn btn-flat flat-danger btn-rounded btn-lg btn-block" %>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8 item-description wrapper-1">
                 <h5 class="subpage-title">Project Description</h5>
-                <%= @project.longer_description || "Description not found." %>
+                <p><%= @project.longer_description || "Description not found." %></p>
             </div>
         </div>
     </div>
