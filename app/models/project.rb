@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   has_many :users, through: :user_projects
   has_many :project_app_types, dependent: :destroy
   has_many :app_types, through: :project_app_types
-  has_many :project_images
+  has_many :project_images, dependent: :destroy
   validates :github_id, :uniqueness => true
   before_save :remove_empty_strings
    
