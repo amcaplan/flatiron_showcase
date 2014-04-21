@@ -67,3 +67,4 @@ gem 'rails-erd'
 gem "webshot"
 gem "carrierwave"
 gem "fog"
+gem 'rmagick', '2.13.2'
