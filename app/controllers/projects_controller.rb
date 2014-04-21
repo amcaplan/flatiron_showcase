@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, except: [:index, :new, :create]
-  before_action :check_user_authorized, except: [:index, :show]
+  before_action :set_project, except: [:index, :new, :create, :about]
+  before_action :check_user_authorized, except: [:index, :show, :about]
 
   # GET /projects
   # GET /projects.json
