@@ -22,6 +22,7 @@ class Project < ActiveRecord::Base
 
     begin
       ws = Webshot::Screenshot.instance
+      #{RAILS_ROOT}/tmp (Heroku)
       img_path = "public/assets/project-images/#{self.id}.png"
       ws.capture full_app_url, img_path, timeout: 2, width: 1166, height: 814 do |magick|
         magick.combine_options do |c|
@@ -50,10 +51,10 @@ class Project < ActiveRecord::Base
   end
 
   def primary_image
-    self.primary_project_image.image
+      self.primary_project_image.image
   end
 
-  def primary_project_image
+  def primary_project_image 
     self.project_images.find_by(primary_image: true)
   end
 
