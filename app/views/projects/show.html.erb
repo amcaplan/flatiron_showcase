@@ -137,7 +137,7 @@
         <div class="row">
             <div id="caroufredsel-portfolio-container">
                 <% @other_projects.each do |project| %>
-                    <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper"  >
+                    <div class="portfolio-item-wrapper col-xs-12 col-sm-6 col-md-4">
                         <div class="portfolio-item">
                             <div class="portfolio-thumb">
                                 <img src="<%= "#{project.primary_image.medium.url}" %>" alt="<%= project.display_name %>" class="img-responsive">
@@ -177,11 +177,8 @@
             circular: false,
             infinite: false,
             items: {
-                visible: {
-                    min: 1,
-                    max: 3
-                },
-                width: "variable",
+                visible: 3,
+                width: null,
                 height: "variable"
             },
             prev: '#portfolio-prev',

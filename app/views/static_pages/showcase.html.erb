@@ -23,7 +23,7 @@
                     data-y="150"
                     data-speed="600"
                     data-start="2600"
-                    data-easing="easeOutExpo" style="background: rgba(140, 140, 140, 0.8); height: 200px; overflow: auto; text-wrap: wrap; padding: 10px">
+                    data-easing="easeOutExpo">
                     <div>
                         <% split_to_length(project.longer_description, 60).each do |str| %>
                           <p><%= str %></p>
@@ -53,12 +53,12 @@
                     data-start="1200" 
                     data-easing="easeOutCirc"><%= image_tag project.primary_image.medium.url %></div>
               <% end %>
-              <div class="caption sft ltr clearfix"
+              <div class="caption sft ltr clearfix visible-users"
                   data-x="0" 
                   data-y="460" 
                   data-speed="900"
                   data-start="1200" 
-                  data-easing="easeOutBack" style="margin-right: 50px">
+                  data-easing="easeOutBack">
                     <% project.visible_users.each do |user| %>
                         <%= link_to user do %>
                           <img src="<%= user.avatar_url %>" alt="Member Image" height="<%= image_size(project) %>" width="<%= image_size(project) %>" style="margin: <%= image_size(project) / 10 %>px; display: block; float: left;">
