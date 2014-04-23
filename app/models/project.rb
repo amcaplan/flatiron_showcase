@@ -69,7 +69,9 @@ class Project < ActiveRecord::Base
   end
 
   def screenshots
-    self.large_images
+    self.large_images.sort_by do |image|
+      image.id == self.primary_project_image.id ? 0 : 1
+    end
   end
 
   Image = Struct.new(:primary, :url, :id)
