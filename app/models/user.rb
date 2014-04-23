@@ -44,15 +44,18 @@ class User < ActiveRecord::Base
   Commit = Struct.new(:datetime, :repo, :repo_url, :commit_url)
 
   def last_commit
-    if !@last_commit
-      commit_hash = self.client.user_events(self.github_login).select { |event|
-        event.type == "PushEvent"
-      }.first
-      datetime = commit_hash.created_at.strftime("%m/%d/%Y at %I:%M%p")
-      repo = commit_hash.repo.name.gsub(/.+\//,'')
-      repo_url = "https://github.com/" + commit_hash.repo.name
-      commit_url = "#{repo_url}/commit/#{commit_hash.payload.commits.last.sha}"
+    begin
+      if !@last_commit
+        commit_hash = self.client.user_events(self.github_login).select { |event|
+          event.type == "PushEvent"
+        }.first
+        datetime = commit_hash.created_at.strftime("%m/%d/%Y at %I:%M%p")
+        repo = commit_hash.repo.name.gsub(/.+\//,'')
+        repo_url = "https://github.com/" + commit_hash.repo.name
+        commit_url = "#{repo_url}/commit/#{commit_hash.payload.commits.last.sha}"
+      end
+      @last_commit ||= Commit.new(datetime, repo, repo_url, commit_url)
+    rescue
     end
-    @last_commit ||= Commit.new(datetime, repo, repo_url, commit_url)
   end
 end
