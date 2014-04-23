@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :authorizations
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects
+  before_save :remove_twitter_at
 
   def self.create_from_hash(user_info)
     User.create(github_login: user_info.login,
@@ -56,6 +57,12 @@ class User < ActiveRecord::Base
       end
       @last_commit ||= Commit.new(datetime, repo, repo_url, commit_url)
     rescue
+    end
+  end
+
+  def remove_twitter_at
+    if self.twitter_handle.start_with?("@")
+      self.twitter_handle = self.twitter_handle[1..-1]
     end
   end
 end
