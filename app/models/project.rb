@@ -19,7 +19,8 @@ class Project < ActiveRecord::Base
     self.fix_url_ends
     self.save
     full_app_url = self.live_app_url + "/"
-
+    should_be_primary = true unless self.primary_project_image
+    
     begin
       ws = Webshot::Screenshot.instance
       img_path = "public/assets/project-images/#{self.id}.png"
@@ -31,7 +32,7 @@ class Project < ActiveRecord::Base
         end
       end
 
-      should_be_primary = true unless self.primary_project_image
+      
       add_image(File.open(img_path), should_be_primary)
       File.delete(img_path)
       if self.primary_image.url.end_with?('not_available.jpg')
