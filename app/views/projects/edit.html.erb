@@ -35,7 +35,7 @@
         <br><br>
         <div class="row">
           <div class="col-md-6">
-            <%= f.label :app_type, class: "subpage-title" %><br>
+            <%= f.label :app_type, "App Type(s)", class: "subpage-title" %><br>
             <%= select_tag "project[app_type]", options_from_collection_for_select(AppType.all, "id", "name", @project.app_types.map(&:id)), {:multiple => true, :size => AppType.all.size, :class => "form-control"} %>
           </div>
           <div class="col-md-6">
