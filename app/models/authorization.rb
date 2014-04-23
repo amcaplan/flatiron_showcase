@@ -15,10 +15,14 @@ class Authorization < ActiveRecord::Base
       User.find_by(github_login: auth.extra.raw_info.login) ||
       User.new
     user.display = true unless authorization.persisted?
-    user.name ||= auth.info.name
+    if !user.name || user.name == ""
+      user.name = auth.info.name
+    end
 
     if auth.provider == "github"
-      user.name ||= auth.extra.raw_info.login
+      if !user.name || user.name == ""
+        user.name = auth.extra.raw_info.login
+      end
       user.github_login = auth.extra.raw_info.login
       user.avatar_url = auth.extra.raw_info.avatar_url
     end
