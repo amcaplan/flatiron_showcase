@@ -85,4 +85,6 @@ Rails.application.configure do
   config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif]
   config.assets.precompile += %w(.svg .eot .woff .ttf)
   config.assets.paths << Rails.root.join('vendor', 'assets', 'stylesheets', 'font')
+  config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts')
+  config.assets.paths << Rails.root.join('vendor', 'assets', 'images')
 end
