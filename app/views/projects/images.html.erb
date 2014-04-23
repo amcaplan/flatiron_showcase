@@ -9,7 +9,7 @@
 <section id="image-upload" class="section colored-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <%= form_tag({action: :upload_image}, multipart: true) do %>
                 <h5 class="subpage-title">Upload a new image</h5>
                 <h5>We recommend a large image with extra vertical and horizontal space.</h5><br>
@@ -17,10 +17,19 @@
                 <br>
                 <%= submit_tag "Upload", id: "project-image-upload-button", class: "btn btn-primary disabled" %>
               <% end %>
+              <br><br>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h5 class="subpage-title">Generate a new image</h5>
                 <button id="take-screenshot" class="btn btn-primary">Take a Screenshot!</button>
+                <br><br>
+            </div>
+            <div class="col-md-4">
+                <h5 class="subpage-title">Done Editing Images?</h5>
+                <%= link_to @project do %>
+                    <button id="take-screenshot" class="btn btn-primary">Return to Project Page</button>
+                <% end %>
+                <br><br>
             </div>
         </div>
     </div>
