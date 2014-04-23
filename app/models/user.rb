@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def remove_twitter_at
-    if self.twitter_handle.start_with?("@")
+    if self.twitter_handle && self.twitter_handle.start_with?("@")
       self.twitter_handle = self.twitter_handle[1..-1]
     end
   end
