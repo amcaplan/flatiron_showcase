@@ -4,8 +4,10 @@ class Project < ActiveRecord::Base
   has_many :project_app_types, dependent: :destroy
   has_many :app_types, through: :project_app_types
   has_many :project_images, dependent: :destroy
-  validates :github_id, :uniqueness => true
+  validates :github_id, uniqueness: true
   validates :brief_description, length: { maximum: 40 }
+  validates :live_app_url, length: {minimum: 11}
+  validates :display_name, length: {minimum: 1}
   before_save :remove_empty_strings
    
   def add_image(image, primary = false)
@@ -18,32 +20,33 @@ class Project < ActiveRecord::Base
 
   def take_app_screenshot!
     self.fix_url_ends
-    self.save
-    full_app_url = self.live_app_url + "/"
-    should_be_primary = true unless self.primary_project_image
+    if self.save # if the user pressed "submit" multiple times, only go through this once!
+      full_app_url = self.live_app_url + "/"
+      should_be_primary = true unless self.primary_project_image
 
-    begin
-      ws = Webshot::Screenshot.instance
-      img_path = "#{Rails.root}/tmp/temp-pic.png"
-      ws.capture full_app_url, img_path, timeout: 2, width: 1166, height: 814 do |magick|
-        magick.combine_options do |c|
-          c.background "gray45"
-          c.gravity "north"
-          c.quality 85
+      begin
+        ws = Webshot::Screenshot.instance
+        img_path = "#{Rails.root}/tmp/temp-pic.png"
+        ws.capture full_app_url, img_path, timeout: 2, width: 1166, height: 814 do |magick|
+          magick.combine_options do |c|
+            c.background "gray45"
+            c.gravity "north"
+            c.quality 85
+          end
         end
-      end
 
-      
-      add_image(File.open(img_path), should_be_primary)
-      File.delete(img_path)
-      if self.primary_image.url.end_with?('not_available.jpg')
-        unavailable = self.primary_project_image
-        self.set_primary_image_to(self.project_images.last)
-        unavailable.remove_image!
-        unavailable.destroy
+        
+        add_image(File.open(img_path), should_be_primary)
+        File.delete(img_path)
+        if self.primary_image.url.end_with?('not_available.jpg')
+          unavailable = self.primary_project_image
+          self.set_primary_image_to(self.project_images.last)
+          unavailable.remove_image!
+          unavailable.destroy
+        end
+      rescue
+        add_image(File.open("app/assets/images/not_available.jpg"), should_be_primary)
       end
-    rescue
-      add_image(File.open("app/assets/images/not_available.jpg"), should_be_primary)
     end
   end
 

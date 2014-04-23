@@ -40,6 +40,11 @@ class ProjectsController < ApplicationController
         Project.new(name: project.full_name, github_id: project.id, display_name: project.name)
       end
 
+      if @select_projects.length == 1
+        @showcase_button_text = "Showcase This Project!"
+      else
+        @showcase_button_text = "Showcase These Projects!"
+      end
     end
     
     @project = Project.new
@@ -62,23 +67,18 @@ class ProjectsController < ApplicationController
       Project.new(project_params(project_hash))
     end
 
-    #call method to take a screenshot
     @projects.each do |project|
       project.take_app_screenshot!
     end
     
     projects_saved = @projects.all?(&:save)
 
-    add_collaborators(@projects)
-
+    if projects_saved
+      add_collaborators(@projects)
+    end
     respond_to do |format|
-      if projects_saved
-        format.html { redirect_to current_user, notice: 'Projects were successfully created.' }
-       # format.json { render action: 'show', status: :created, location: @project }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @projects.map(&:errors).join, status: :unprocessable_entity }
-      end
+      format.html { redirect_to user_path(current_user) + '#projects'}
+      # format.json { render action: 'show', status: :created, location: @project }
     end
   end
 
