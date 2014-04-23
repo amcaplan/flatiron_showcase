@@ -39,7 +39,7 @@
             <%= select_tag "project[app_type]", options_from_collection_for_select(AppType.all, "id", "name", @project.app_types.map(&:id)), {:multiple => true, :size => AppType.all.size, :class => "form-control"} %>
           </div>
           <div class="col-md-6">
-            <%= f.label :longer_description, class: "subpage-title" %><br>
+            <%= f.label :longer_description, "Longer Description (required for showcase view)", class: "subpage-title" %><br>
             <%= f.text_area :longer_description, class: "form-control", rows: AppType.all.size, placeholder: "Here is a description of our app.  It's really amazing.  Seriously, you have to check it out.  You won't believe your eyes!  It will do your laundry! It will cut your hair!  It will check your email for you, and always remember to avoid reply-all!" %>
           </div>
         </div>
