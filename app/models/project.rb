@@ -20,10 +20,10 @@ class Project < ActiveRecord::Base
     self.save
     full_app_url = self.live_app_url + "/"
     should_be_primary = true unless self.primary_project_image
-    
+
     begin
       ws = Webshot::Screenshot.instance
-      img_path = "public/assets/project-images/#{self.id}.png"
+      img_path = "#{Rails.root}/tmp/temp-pic.png"
       ws.capture full_app_url, img_path, timeout: 2, width: 1166, height: 814 do |magick|
         magick.combine_options do |c|
           c.background "gray45"
