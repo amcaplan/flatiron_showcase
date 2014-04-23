@@ -11,7 +11,7 @@
         <%= f.text_field :display_name, {name: "projects[][display_name]", class: "form-control", val: project.name[/\/.+/][1..-1] } %>
         </div>
         <div class="col-md-3">
-        <%= f.label :live_app_url %>
+        <%= f.label :live_app_url, "Live App URL (required)" %>
         <%= f.text_field :live_app_url, {name: "projects[][live_app_url]", class: "form-control" } %>
         </div>
       <% end %>
