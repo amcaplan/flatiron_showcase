@@ -11,7 +11,9 @@ class Authorization < ActiveRecord::Base
       return false if !authorization.organizations.map(&:id).include?(6207995)
     end
     
-    user = authorization.user || User.new
+    user = authorization.user ||
+      User.find_by(github_login: auth.extra.raw_info.login) ||
+      User.new
     user.display = true unless authorization.persisted?
     user.name ||= auth.info.name
 
