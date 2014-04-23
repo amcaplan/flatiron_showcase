@@ -15,5 +15,4 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.themepunch.plugins.min.js
-//= require chosen.jquery.js
 //= require_directory ./
