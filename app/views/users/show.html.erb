@@ -63,12 +63,14 @@
                                 <%= new_tab_link @user.github_login, @user.github_url %>
                             </div>
                         </li>
+                        <% if @user.last_commit %>
                         <li class="clearfix">
                             <h6>Most Recent Commit:</h6>
                             <div class="project-terms">
                                 <%= @user.last_commit.datetime %> to <%= new_tab_link @user.last_commit.repo, @user.last_commit.repo_url %> <%= new_tab_link "(Browse the Code)", @user.last_commit.commit_url %>
                             </div>
                         </li>
+                        <% end %>
                     </ul>
                 </div>
                 <div class="col-md-8">
