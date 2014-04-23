@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @page_name = @project.display_name
-    @other_projects = @project.users.map(&:projects).flatten.
+    @other_projects = @project.visible_users.map(&:projects).flatten.
       reject{|project| project == @project}.uniq.shuffle.first(5)
   end
 

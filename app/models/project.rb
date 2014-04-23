@@ -135,4 +135,8 @@ class Project < ActiveRecord::Base
       self.send("#{attr}=", nil) if self.send(attr) == ""
     end
   end
+
+  def visible_users
+    self.users.where(display: true)
+  end
 end

@@ -59,7 +59,7 @@
                   data-speed="900"
                   data-start="1200" 
                   data-easing="easeOutBack" style="margin-right: 50px">
-                    <% project.users.each do |user| %>
+                    <% project.visible_users.each do |user| %>
                         <%= link_to user do %>
                           <img src="<%= user.avatar_url %>" alt="Member Image" height="<%= image_size(project) %>" width="<%= image_size(project) %>" style="margin: <%= image_size(project) / 10 %>px; display: block; float: left;">
                         <% end %>

@@ -12,6 +12,7 @@ class Authorization < ActiveRecord::Base
     end
     
     user = authorization.user || User.new
+    user.display = true unless user.persisted?
     user.name ||= auth.info.name
 
     if auth.provider == "github"

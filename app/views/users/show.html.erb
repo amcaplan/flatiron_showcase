@@ -1,5 +1,12 @@
 <section id="short-intro" class="section colored-wrapper">
     <div class="container">
+      <% if @user == current_user && !@user.display %>
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong>Your profile is currently invisible.</strong>
+            Click "Edit My Info" to change your settings.
+        </div>
+      <% end %>
         <div class="row">
             <div class="col-md-3 wrapper-1">
                 <div class="team-member">

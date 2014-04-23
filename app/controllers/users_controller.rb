@@ -4,13 +4,14 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @users = User.visible_users
     @page_name = "The Amazing Flatiron Students!"
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    redirect_to users_path unless @user.display || @user == current_user
     @page_name = @user.name
   end
 
@@ -60,6 +61,10 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :twitter_handle, :linkedin_url, :github_login, :avatar_url, :bio, :hireable)
+      params[:user][:display] = (params[:user][:display] == "1")
+      [:linkedin_url, :twitter_handle, :bio].each do |attr|
+        params[:user][attr] = nil if params[:user][attr].empty?
+      end
+      params.require(:user).permit(:name, :email, :twitter_handle, :linkedin_url, :bio, :display)
     end
 end

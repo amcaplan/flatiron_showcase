@@ -72,7 +72,7 @@
                         <li class="clearfix">
                             <h6>Contributors:</h6>
                             <div class="project-terms">
-                                <%= raw @project.users.map { |user| %>
+                                <%= raw @project.visible_users.map { |user| %>
                                     <% link_to(user.name, user) %>
                                 <% }.join(", ") %>
                             </div>
