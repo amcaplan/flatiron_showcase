@@ -14,6 +14,6 @@
 //= require FlatPoint-js/jquery-migrate-1.2.1
 //= require jquery_ujs
 //= require bootstrap
-//= require Flatpoint-js/rs-plugin/pluginsources/jquery.themepunch.plugins.min.js
+//= require Flatpoint-js/jquery.themepunch.plugins.min.js
 //= require chosen.jquery.js
 //= require_directory ./
