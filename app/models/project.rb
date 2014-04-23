@@ -5,6 +5,7 @@ class Project < ActiveRecord::Base
   has_many :app_types, through: :project_app_types
   has_many :project_images, dependent: :destroy
   validates :github_id, :uniqueness => true
+  validates :brief_description, length: { maximum: 40 }
   before_save :remove_empty_strings
    
   def add_image(image, primary = false)

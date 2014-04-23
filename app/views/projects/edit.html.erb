@@ -28,8 +28,8 @@
                 <%= f.text_field :technologies, class: "form-control", placeholder: "e.g. jQuery, Rails, GitHub API" %>
             </div>
             <div class="col-md-3">
-                <%= f.label :brief_description, class: "subpage-title" %><br>
-                <%= f.text_field :brief_description, class: "form-control", placeholder: "e.g., A super-cool app for doing stuff" %>
+                <%= f.label :brief_description, "Brief Description (<40 chars)", class: "subpage-title" %><br>
+                <%= f.text_field :brief_description, class: "form-control", placeholder: "e.g., A super-cool app for doing stuff", maxlength: 40 %>
             </div>
         </div>
         <br><br>

@@ -147,7 +147,10 @@ class ProjectsController < ApplicationController
   def destroy_image
     if @project.project_images.length > 1
       primary_project_image_id = @project.primary_project_image.id
-      ProjectImage.find(params[:project_image_id]).destroy
+      begin
+        ProjectImage.find(params[:project_image_id]).destroy
+      rescue
+      end
       if primary_project_image_id == params[:project_image_id].to_i
         @project.set_primary_image_to(@project.project_images.first)
       end
