@@ -98,6 +98,13 @@
                 </div>
               <% end %>
             </div>
+            <div class="text-center">
+                <div class="col-md-4 center-block col-centered">
+                    <% if @user == current_user %>
+                        <%= link_to "Add New Projects", new_project_path, class: "btn btn-flat flat-info btn-rounded btn-lg btn-block" %>
+                    <% end %>
+                </div>
+            </div>
             <!-- /.row -->
         </div>
         <!-- /.container -->
