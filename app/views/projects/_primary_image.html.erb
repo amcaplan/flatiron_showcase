@@ -1,5 +1,6 @@
 <div class="container wrapper-2">
     <h5 class="subpage-title">Current Primary Image</h5>
+    <% if @primary_project_image && @primary_image %>
     <div id="primary-image" data-image-num="<%= @primary_project_image.id %>">
         <div class="team-member-thumb">
             <h5>Large Version</h5>
@@ -19,5 +20,6 @@
         </div>
         <br>
     </div>
+    <% end %>
     <br><br>
 </div>

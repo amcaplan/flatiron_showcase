@@ -51,7 +51,7 @@ class Project < ActiveRecord::Base
   end
 
   def primary_image
-      self.primary_project_image.image
+      self.primary_project_image.image if primary_project_image
   end
 
   def primary_project_image 

@@ -27,12 +27,14 @@
                     <ul class="recent-posts">
                         <% @recent_projects.each do |project| %>
                         <li>
+                            <% if project.primary_image %>
                             <%= link_to raw("<img src=\"#{project.primary_image.thumb.url}\" alt=\"#{project.display_name}\">"), project %>
                             <h5>
                                 <%= link_to project.display_name, project %>
                                 <small>Posted on <%= project.created_at.strftime("%m/%d/%Y") %></small>
                                 <small>Last commit: <%= project.last_commit %></small>
                             </h5>
+                            <% end %>
                         </li>
                         <% end %>
                     </ul>

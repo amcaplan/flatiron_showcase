@@ -13,10 +13,12 @@
                 <div class="col-xs-12 col-sm-6 col-md-4 portfolio-item-wrapper <%= project.app_types.map(&:slug).join(' ') %>">
                     <div class="portfolio-item">
                         <div class="portfolio-thumb">
+                            <% if project.primary_image %>
                             <img src="<%= raw("#{project.primary_image.medium.url}") %>" class="img-responsive">
                             <div class="image-overlay"></div>
                             <a href="<%= raw("#{project.primary_image.large.url}") %>" rel="prettyPhoto[pp_gal]"  class="portfolio-zoom"><i class="icon-eye-open"></i></a>
                             <%= link_to raw("<i class=\"icon-link\"></i>"), project, class: "portfolio-link" %>
+                            <% end %>
                         </div>
                         <div class="portfolio-content">
                             <h5><%= link_to project.display_name, project %></h5>
