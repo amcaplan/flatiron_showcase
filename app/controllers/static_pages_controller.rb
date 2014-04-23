@@ -13,4 +13,9 @@ class StaticPagesController < ApplicationController
     @colors = (0..3).to_a.shuffle.cycle
     render layout: false
   end
+
+  def about
+    @dev_team = User.where(:github_login => ["amcaplan", "bokwon"]).all
+    @page_name = "Meet the Flatiron Showcase Developers"
+  end
 end

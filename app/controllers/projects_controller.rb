@@ -123,10 +123,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def about
-    @page_name = "Meet the Flatiron Showcase Developers"
-  end
-
   def images
     @primary_project_image = @project.primary_project_image
     @primary_image = @primary_project_image.image

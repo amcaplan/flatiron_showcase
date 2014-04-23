@@ -21,12 +21,7 @@
       <section id="team-4-columns" class="section">
         <div class="container wrapper-2">
           <h5 class="subpage-title">Developers</h5>
-            <% dev1 = User.all.find_by(:github_login => "amcaplan") %>
-            <% dev2 = User.all.find_by(:github_login => "bokwon") %>
-            <% dev_team = [] %>
-            <% dev_team << dev1 %>
-            <% dev_team << dev2 %>
-            <% dev_team.each do |dev| %>
+            <% @dev_team.each do |dev| %>
             <div class="col-md-3 team-member-wrapper">
                 <div class="team-member">
                     <div class="team-member-thumb">
@@ -54,10 +49,10 @@
            <% end %>
           </div>
        
-    </div>
-    <!-- /.container -->
-</section>
-<!-- /#team-3-columns -->
+        </div>
+        <!-- /.container -->
+      </section>
+      <!-- /#team-3-columns -->
       <br>
     </div>
   </div>
