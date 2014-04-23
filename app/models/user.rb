@@ -27,7 +27,15 @@ class User < ActiveRecord::Base
   end
 
   def repos
-    self.client.repos
+    user_repos = self.client.repos
+    results = self.client.last_response
+    next_page = ""
+    until !results.rels[:next] || next_page == results.rels[:next]
+      next_page = results.rels[:next]
+      user_repos += next_page.get.data
+      results = self.client.last_response
+    end
+    user_repos
   end
 
   def organizations
