@@ -136,7 +136,7 @@ class ProjectsController < ApplicationController
 
   def set_primary_image
     primary_image = ProjectImage.find(params[:project_image_id])
-    @project.set_primary_image_to(primary_image)
+    @project.set_primary_image_to(primary_image) if primary_image
     render_primary_image_only
   end
 

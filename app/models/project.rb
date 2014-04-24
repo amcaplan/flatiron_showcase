@@ -67,8 +67,7 @@ class Project < ActiveRecord::Base
       self.primary_project_image.update_attributes(primary_image: false)
     rescue # if no primary image exists
     end
-    project_image.primary_image = true
-    project_image.save
+    ProjectImage.find(project_image.id).update_attributes(primary_image: true)
   end
 
   def screenshots
