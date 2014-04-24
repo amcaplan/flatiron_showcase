@@ -129,7 +129,7 @@ class ProjectsController < ApplicationController
 
   def images
     @primary_project_image = @project.primary_project_image
-    if @primary_image
+    if @primary_project_image
       @primary_image = @primary_project_image.image
     end
     @page_name = "Edit Images for #{@project.display_name}"
