@@ -5,22 +5,24 @@
         <% @projects.each_with_index do |project, index| %>
           <li data-transition="fade" data-slotamount="10" data-masterspeed="300">
               <img src="/assets/slider-backgrounds/<%= @colors.take(index + 1).last %>.png" alt="Slide Image">
-              <div class="caption modern_big_bluebg sft stt tp-caption start"
-                  data-x="590"
+              <!-- <div class="caption modern_big_bluebg sft stt tp-caption start"> -->
+              <div class="caption sft stt tp-caption start modern_big_redbg display_name"
+                  data-x="615"
                   data-y="60"
                   data-speed="300"
                   data-start="2200"
                   data-easing="easeOutExpo"><%= project.display_name.upcase %></div>
-              <div class="tp-caption sft stt testimonial-content"
-                  data-x="590"
-                  data-y="105"
+              <!-- <div class="tp-caption sft stt testimonial-content"> -->
+              <div class="caption sft stt brief-description"
+                  data-x="615"
+                  data-y="120"
                   data-speed="300"
                   data-start="2400"
                   data-easing="easeOutExpo"><%= project.brief_description %></div>
               <% if project.longer_description %>
-                <div class="tp-caption sft stt modern_medium_fat longer-description"
-                    data-x="590"
-                    data-y="200"
+                <div class="tp-caption sft stt testimonial-content longer-description"
+                    data-x="615"
+                    data-y="160"
                     data-speed="600"
                     data-start="2600"
                     data-easing="easeOutExpo">
@@ -32,14 +34,14 @@
                 </div>
               <% end %>
               <a href="/projects/<%= project.id %>"
-                  class="caption btn btn-flat flat-success sfb stb" 
+                  class="caption btn btn-rounded flat-success sfb stb" 
                   data-x="615"
                   data-y="380"
                   data-speed="300" 
                   data-start="2800"
                   data-easing="easeOutExpo">More About this Project</a>
               <a href="<%= project.live_app_url %>" target="_blank"
-                  class="caption btn btn-flat flat-color sfb stb"  
+                  class="caption btn btn-rounded flat-color sfb stb"  
                   data-x="855" 
                   data-y="380" 
                   data-speed="300"
