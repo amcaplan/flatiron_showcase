@@ -27,15 +27,11 @@ class User < ActiveRecord::Base
   end
 
   def repos
-    user_repos = self.client.repos
-    results = self.client.last_response
-    next_page = ""
-    until !results.rels[:next] || next_page == results.rels[:next]
-      next_page = results.rels[:next]
-      user_repos += next_page.get.data
-      results = self.client.last_response
-    end
-    user_repos
+    GitHubQuerier.new(self).repos
+  end
+
+  def last_commit
+    @last_commit ||= GitHubQuerier.new(self).last_commit
   end
 
   def organizations
@@ -48,24 +44,6 @@ class User < ActiveRecord::Base
 
   def twitter_url
     "http://twitter.com/" + twitter_handle
-  end
-
-  Commit = Struct.new(:datetime, :repo, :repo_url, :commit_url)
-
-  def last_commit
-    begin
-      if !@last_commit
-        commit_hash = self.client.user_events(self.github_login).select { |event|
-          event.type == "PushEvent"
-        }.first
-        datetime = commit_hash.created_at.strftime("%m/%d/%Y at %I:%M%p")
-        repo = commit_hash.repo.name.gsub(/.+\//,'')
-        repo_url = "https://github.com/" + commit_hash.repo.name
-        commit_url = "#{repo_url}/commit/#{commit_hash.payload.commits.last.sha}"
-      end
-      @last_commit ||= Commit.new(datetime, repo, repo_url, commit_url)
-    rescue
-    end
   end
 
   def remove_twitter_at

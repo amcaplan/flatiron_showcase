@@ -8,6 +8,7 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 require "carrierwave"
+require_relative "../app/classes/github_querier"
 require_relative "../app/uploaders/screenshot_uploader"
 # require "rails/test_unit/railtie"
 
@@ -28,5 +29,6 @@ module FlatironShowcase
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.autoload_paths += Dir[Rails.root.join("app", "classes")]
   end
 end
