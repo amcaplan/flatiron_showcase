@@ -21,4 +21,12 @@
 
 .testimonial-content {
   border-radius: 10px;
+  &::before {
+    display: none;
+  }
+}
+
+.blue {
+  color: #1468fb;
+  text-shadow: 0px 0px 18px rgba(200, 200, 200, 0.5);
 }
