@@ -1,7 +1,10 @@
 <li>
     <i class="icon-github-alt"></i>
     <% if current_user %>
-      Hello, <%= current_user.name %>! <a id="logout" href="/signout">Log Out</a>
+      Hello, <%= current_user.name %>! |
+      <%= link_to "My Profile", current_user %> |
+      <%= link_to "My Projects", user_path(current_user) + '#projects' %> |
+      <a id="logout" href="/signout">Log Out</a>
     <% else %>
       <a href="/auth/github">Log in with GitHub! (For Flatiron Students Only)</a>
     <% end %>

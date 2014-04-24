@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @page_name = @project.display_name
-    @other_projects = @project.users.map(&:projects).flatten.
+    @other_projects = @project.visible_users.map(&:projects).flatten.
       reject{|project| project == @project}.uniq.shuffle.first(5)
   end
 
@@ -40,6 +40,11 @@ class ProjectsController < ApplicationController
         Project.new(name: project.full_name, github_id: project.id, display_name: project.name)
       end
 
+      if @select_projects.length == 1
+        @showcase_button_text = "Showcase This Project!"
+      else
+        @showcase_button_text = "Showcase These Projects!"
+      end
     end
     
     @project = Project.new
@@ -62,23 +67,18 @@ class ProjectsController < ApplicationController
       Project.new(project_params(project_hash))
     end
 
-    #call method to take a screenshot
     @projects.each do |project|
       project.take_app_screenshot!
     end
     
     projects_saved = @projects.all?(&:save)
 
-    add_collaborators(@projects)
-
+    if projects_saved
+      add_collaborators(@projects)
+    end
     respond_to do |format|
-      if projects_saved
-        format.html { redirect_to current_user, notice: 'Projects were successfully created.' }
-       # format.json { render action: 'show', status: :created, location: @project }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @projects.map(&:errors).join, status: :unprocessable_entity }
-      end
+      format.html { redirect_to user_path(current_user) + '#projects'}
+      # format.json { render action: 'show', status: :created, location: @project }
     end
   end
 
@@ -123,10 +123,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def about
-    @page_name = "Meet the Flatiron Showcase Developers"
-  end
-
   def images
     @primary_project_image = @project.primary_project_image
     if @primary_project_image
@@ -142,14 +138,17 @@ class ProjectsController < ApplicationController
 
   def set_primary_image
     primary_image = ProjectImage.find(params[:project_image_id])
-    @project.set_primary_image_to(primary_image)
+    @project.set_primary_image_to(primary_image) if primary_image
     render_primary_image_only
   end
 
   def destroy_image
     if @project.project_images.length > 1
       primary_project_image_id = @project.primary_project_image.id
-      ProjectImage.find(params[:project_image_id]).destroy
+      begin
+        ProjectImage.find(params[:project_image_id]).destroy
+      rescue
+      end
       if primary_project_image_id == params[:project_image_id].to_i
         @project.set_primary_image_to(@project.project_images.first)
       end

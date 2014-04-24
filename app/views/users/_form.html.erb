@@ -28,17 +28,14 @@
           </div>
         </div><br>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-8">
             <%= f.label :linkedin_url, class: "subpage-title" %><br>
             <%= f.text_field :linkedin_url, class: "form-control" %>
           </div>
-          <div class="col-md-4">
-            <%= f.label :github_login, class: "subpage-title" %><br>
-            <%= f.text_field :github_login, class: "form-control" %>
-          </div>
-          <div class="col-md-4">
-            <%= f.label :avatar_url, class: "subpage-title" %><br>
-            <%= f.text_field :avatar_url, class: "form-control" %>
+          <div class="col-md-4"><br>
+            <h5 class="subpage-title">Visibility</h5>
+            <%= f.check_box :display %>
+            <%= f.label :display, "Show my info" %>
           </div>
         </div><br>
         <div class="row">
@@ -46,15 +43,11 @@
             <%= f.label :bio, class: "subpage-title"%><br>
             <%= f.text_area :bio, rows: 15, class: "form-control" %>
           </div>
-          <div class="col-md-4"><br>
-            <%= f.label :hireable, class: "subpage-title" %>
-            <%= f.check_box :hireable %>
-          </div>
         </div><br>
         <div class="actions">
           <div class="col-md-6 center-block col-centered clearfix submit-buttons">
               <div class="col-md-6">
-                <%= f.submit class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
+                <%= f.submit 'Update My Info', class: "btn btn-flat flat-primary btn-rounded btn-lg btn-block" %>
               </div>
               <div class="col-md-6">
                 <%= link_to 'Back', @user, class: "btn btn-flat flat-danger btn-rounded btn-lg btn-block" %>

@@ -18,14 +18,14 @@
                   data-start="2400"
                   data-easing="easeOutExpo"><%= project.brief_description %></div>
               <% if project.longer_description %>
-                <div class="tp-caption sft stt modern_medium_fat"
+                <div class="tp-caption sft stt modern_medium_fat longer-description"
                     data-x="590"
                     data-y="200"
                     data-speed="600"
                     data-start="2600"
                     data-easing="easeOutExpo">
                     <div>
-                        <% split_to_length(project.longer_description, 50).each do |str| %>
+                        <% split_to_length(project.longer_description, 60).each do |str| %>
                           <p><%= str %></p>
                         <% end %>
                     </div>
@@ -34,14 +34,14 @@
               <a href="/projects/<%= project.id %>"
                   class="caption btn btn-flat flat-success sfb stb" 
                   data-x="615"
-                  data-y="360"
+                  data-y="380"
                   data-speed="300" 
                   data-start="2800"
                   data-easing="easeOutExpo">More About this Project</a>
               <a href="<%= project.live_app_url %>" target="_blank"
                   class="caption btn btn-flat flat-color sfb stb"  
                   data-x="855" 
-                  data-y="360" 
+                  data-y="380" 
                   data-speed="300"
                   data-start="3000"
                   data-easing="easeOutExpo">See the Project Live!</a>
@@ -53,13 +53,13 @@
                     data-start="1200" 
                     data-easing="easeOutCirc"><%= image_tag project.primary_image.medium.url %></div>
               <% end %>
-              <div class="caption sft ltr clearfix"
+              <div class="caption sft ltr clearfix visible-users"
                   data-x="0" 
                   data-y="460" 
                   data-speed="900"
                   data-start="1200" 
-                  data-easing="easeOutBack" style="margin-right: 50px">
-                    <% project.users.each do |user| %>
+                  data-easing="easeOutBack">
+                    <% project.visible_users.each do |user| %>
                         <%= link_to user do %>
                           <img src="<%= user.avatar_url %>" alt="Member Image" height="<%= image_size(project) %>" width="<%= image_size(project) %>" style="margin: <%= image_size(project) / 10 %>px; display: block; float: left;">
                         <% end %>

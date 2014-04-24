@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :students, except: [:new, :create], as: :users, to: 'users'
 
-  get '/about', to: 'projects#about'
+  get '/about', to: 'static_pages#about'
   get '/showcase', to: 'static_pages#showcase'
 
   match 'auth/:provider/callback', to: 'sessions#create', via: [:get, :post]

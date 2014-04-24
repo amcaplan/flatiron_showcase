@@ -21,15 +21,9 @@
                of jQuery libraries: the Revolution Slider, CarouFredSel, and Isotope.</p>
             </h5>
           </div>
-      <section id="team-4-columns" class="section">
         <div class="container wrapper-2">
           <h5 class="subpage-title">The Developers</h5>
-            <% dev1 = User.all.find_by(:github_login => "amcaplan") %>
-            <% dev2 = User.all.find_by(:github_login => "bokwon") %>
-            <% dev_team = [] %>
-            <% dev_team << dev1 %>
-            <% dev_team << dev2 %>
-            <% dev_team.each do |dev| %>
+            <% @dev_team.each do |dev| %>
             <div class="col-md-3 team-member-wrapper">
                 <div class="team-member">
                     <div class="team-member-thumb">
@@ -49,17 +43,15 @@
                     </div>
                     <%= link_to dev do %>
                       <div class="team-member-info">
-                          <h5><%= link_to dev.name %></h5>
+                          <h5><%= link_to dev.name, dev %></h5>
                       </div>
                    <% end %>
                 </div>
             </div>
            <% end %>
-      </div>  
-    </div>
-    <!-- /.container -->
-</section>
-<!-- /#team-3-columns -->
+          </div>
+        </div>
+        <!-- /.container -->  
       <br>
     </div>
   </div>
