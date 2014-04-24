@@ -8,42 +8,38 @@
               <!-- <div class="caption modern_big_bluebg sft stt tp-caption start"> -->
               <div class="caption sft stt tp-caption start modern_big_redbg display_name"
                   data-x="615"
-                  data-y="60"
+                  data-y="30"
                   data-speed="300"
                   data-start="2200"
                   data-easing="easeOutExpo"><%= project.display_name.upcase %></div>
               <!-- <div class="tp-caption sft stt testimonial-content"> -->
               <div class="caption sft stt brief-description"
                   data-x="615"
-                  data-y="120"
+                  data-y="75"
                   data-speed="300"
                   data-start="2400"
                   data-easing="easeOutExpo"><%= project.brief_description %></div>
               <% if project.longer_description %>
                 <div class="tp-caption sft stt testimonial-content longer-description"
                     data-x="615"
-                    data-y="160"
+                    data-y="120"
                     data-speed="600"
                     data-start="2600"
                     data-easing="easeOutExpo">
-                    <div>
-                        <% split_to_length(project.longer_description, 60).each do |str| %>
-                          <p><%= str %></p>
-                        <% end %>
-                    </div>
+                    <%= split_string project.longer_description, 55 %>
                 </div>
               <% end %>
               <a href="/projects/<%= project.id %>"
                   class="caption btn btn-rounded flat-success sfb stb" 
                   data-x="615"
-                  data-y="380"
+                  data-y="395"
                   data-speed="300" 
                   data-start="2800"
                   data-easing="easeOutExpo">More About this Project</a>
               <a href="<%= project.live_app_url %>" target="_blank"
                   class="caption btn btn-rounded flat-color sfb stb"  
                   data-x="855" 
-                  data-y="380" 
+                  data-y="395" 
                   data-speed="300"
                   data-start="3000"
                   data-easing="easeOutExpo">See the Project Live!</a>
