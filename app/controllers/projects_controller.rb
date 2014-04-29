@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, except: [:index, :new, :create, :about]
+  before_action :set_project, except: [:index, :new, :create, :about, :form_step_two]
   before_action :check_user_authorized, except: [:index, :show, :about]
 
   # GET /projects
@@ -19,36 +19,30 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    # WORKFLOW:
-    # SELECT REPOS FROM GITHUB (EXCLUDE ALREADY ADDED PROJECTS)
-    # ENTER INFORMATION ABOUT EACH PROJECT (name, url, descriptions(optional))
-    # SUBMIT!
-
-    @github_projects = current_user.repos
-    existing_projects = Project.pluck(:github_id).map(&:to_i)
-    @github_projects.reject! do |project|
-      existing_projects.include?(project.id)
-    end
-
-    if params[:projects]
-      project_ids = params[:projects].map(&:to_i)
-      @select_projects = @github_projects.select do |project|
-        project_ids.include?(project.id) 
-      end
-
-      @select_projects.map! do |project|
-        Project.new(name: project.full_name, github_id: project.id, display_name: project.name)
-      end
-
-      if @select_projects.length == 1
-        @showcase_button_text = "Showcase This Project!"
-      else
-        @showcase_button_text = "Showcase These Projects!"
-      end
-    end
+    get_github_projects
     
     @project = Project.new
     @page_name = "Add New Projects"
+  end
+
+  # GET /projects/new/steps/2
+  def form_step_two
+    get_github_projects
+
+    project_ids = params[:projects].map(&:to_i)
+    @select_projects = @github_projects.select do |project|
+      project_ids.include?(project.id) 
+    end
+
+    @select_projects.map! do |project|
+      Project.new(name: project.full_name, github_id: project.id, display_name: project.name)
+    end
+
+    if @select_projects.length == 1
+      @showcase_button_text = "Showcase This Project!"
+    else
+      @showcase_button_text = "Showcase These Projects!"
+    end
   end
 
   # GET /projects/1/edit
@@ -59,10 +53,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    # FOR EACH PROJECT, VALIDATE INPUT, AND:
-    # 1. GET SCREENSHOT
-    # 2. ADD OTHER COLLABORATORS (?)
-    # 3. SHOW PROJECT PAGE (redirect)
     @projects = params[:projects].map do |project_hash|
       Project.new(project_params(project_hash))
     end
@@ -76,6 +66,7 @@ class ProjectsController < ApplicationController
     if projects_saved
       add_collaborators(@projects)
     end
+
     respond_to do |format|
       format.html { redirect_to user_path(current_user) + '#projects'}
       # format.json { render action: 'show', status: :created, location: @project }
@@ -172,6 +163,15 @@ class ProjectsController < ApplicationController
         redirect_to root_url, notice: 'Please log in using GitHub first.'
       elsif @project && !@project.users.include?(current_user)
         redirect_to @project, notice: 'You are not authorized to make changes to this project.'
+      end
+    end
+
+    def get_github_projects
+      @github_projects = current_user.repos
+      existing_projects = Project.pluck(:github_id).map(&:to_i)
+      
+      @github_projects.reject! do |project|
+        existing_projects.include?(project.id)
       end
     end
 

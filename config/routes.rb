@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       post 'images/:project_image_id/destroy', to: 'projects#destroy_image'
     end
   end
+  get '/projects/new/steps/2', to: 'projects#form_step_two'
 
   resources :students, except: [:new, :create], as: :users, to: 'users'
 
