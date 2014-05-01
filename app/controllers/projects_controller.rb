@@ -12,9 +12,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @other_projects = Project.joins(:users).
+      where("users.id" => @project.visible_users.select(:id)).
+      where.not("projects.id" => @project.id).
+      shuffle.first(5)
     @page_name = @project.display_name
-    @other_projects = @project.visible_users.map(&:projects).flatten.
-      reject{|project| project == @project}.uniq.shuffle.first(5)
   end
 
   # GET /projects/new
@@ -181,12 +183,10 @@ class ProjectsController < ApplicationController
     end
 
     def add_collaborators(projects)
+      client = current_user.client
       projects.each do |project|
-        client = current_user.client
-        collaborators = client.collabs(project.name)
-        collaborators.each do |collaborator|
-          login = collaborator.login
-          existing_user = User.find_by(github_login: login)
+        client.collabs(project.name).each do |collaborator|
+          existing_user = User.find_by(github_login: collaborator.login)
           if existing_user
             project.users << existing_user
           else
