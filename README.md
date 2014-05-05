@@ -1,40 +1,43 @@
 # Flatiron Showcase
 
-## Description
+## Where Flatiron Students prove their mettle
 
-Add a short description of your app.
+The Flatiron Showcase was built as a platform for Flatiron School students to showcase their projects and build a personal profile around those projects.
+
+The project is currently online at [flatiron-showcase.herokuapp.com](http://flatiron-showcase.herokuapp.com)
 
 ## Screenshots
 
-Add some spiffy screenshots of your app here.
+![Homepage](https://flatiron-showcase.s3.amazonaws.com/uploads/project_image/image/92/large_Screen_Shot_2014-05-05_at_6.19.36_PM.png 'Homepage')
+
+![Project Listings](https://flatiron-showcase.s3.amazonaws.com/uploads/project_image/image/94/medium_Screen_Shot_2014-05-05_at_6.24.04_PM.png 'Project Listings')
+
+![Showcase View](https://flatiron-showcase.s3.amazonaws.com/uploads/project_image/image/95/large_Screen_Shot_2014-05-05_at_6.25.57_PM.png 'Showcase View')
 
 ## Background
 
-Why did you want to make this app? What was your development process
-like?
+Flatiron School students are intelligent, hardworking, and passionate. After working with an amazing group for three months, Boyoung and Ariel wanted to create a platform where everyone could get a taste of the intensity and creativity of Flatiron students.
 
-## Features
+The results astounded us, and we hope you too will be wowed by the accomplishments of Flatiron students.
 
-Bullet point some of the key features of your app here.
+## User Stories
 
-## Usage
+Flatiron students can upload their projects and are presented with a rich interface to highlight key points about their projects.
 
-How do users use your app?
+Employers and potential students can view a student's portfolio and see more information about a particular project.
 
 ## Development/Contribution
 
-Explain how people can contribute to your app. How should they write tests?
-Any things in particular you'd like to see in pull requests?
+Got some good ideas?  Fork, make a feature branch, and pull request.  We would love to expand the functionality of the app.
 
 ## Future
 
-What features are you currently working on? Only mention things that you
-actually are implementing. No pie-in-the-sky-never-gonna-happen stuff.
+We would like to implement search functionality to make it easy to browse by a student's name.  We may also implement more filters, e.g. Ruby/iOS class.
 
-## Author
+## Authors
 
-Link to your blog, twitter, etc!
+Proud Flatiron School alumni [Boyoung Kwon](http://github.com/bokwon) and [Ariel Caplan](http://github.com/amcaplan)
 
 ## License
 
-My Spiffy App is MIT Licensed. See LICENSE for details.
+The Flatiron Showcase is MIT Licensed.
