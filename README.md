@@ -8,10 +8,17 @@ The project is currently online at [flatiron-showcase.herokuapp.com](http://flat
 
 ## Screenshots
 
+###Homepage
 ![Homepage](https://flatiron-showcase.s3.amazonaws.com/uploads/project_image/image/92/large_Screen_Shot_2014-05-05_at_6.19.36_PM.png 'Homepage')
 
-![Project Listings](https://flatiron-showcase.s3.amazonaws.com/uploads/project_image/image/94/medium_Screen_Shot_2014-05-05_at_6.24.04_PM.png 'Project Listings')
 
+
+###Project Listings
+![Project Listings](https://flatiron-showcase.s3.amazonaws.com/uploads/project_image/image/94/large_Screen_Shot_2014-05-05_at_6.24.04_PM.png 'Project Listings')
+
+
+
+###Showcase View
 ![Showcase View](https://flatiron-showcase.s3.amazonaws.com/uploads/project_image/image/95/large_Screen_Shot_2014-05-05_at_6.25.57_PM.png 'Showcase View')
 
 ## Background
