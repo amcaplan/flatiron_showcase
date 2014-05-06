@@ -8,8 +8,10 @@
             <div class="col-xs-6 hidden-xs breadcrumb-wrapper">
                 <ol class="breadcrumb pull-right">
                     <li><a href="/">Home</a></li>
-                        <li><%= link_to @controller, @controller_path %></a></li>
-                        <li class="active"><%= @page_name %></li>
+                    <% unless @controller == "Static Pages" %>
+                        <li><%= link_to @controller, @controller_path %></li>
+                    <% end %>
+                    <li class="active"><%= @page_name %></li>
                 </ol>
             </div>
         </div>
