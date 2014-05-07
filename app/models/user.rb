@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
         commit_hash = self.client.user_events(self.github_login).select { |event|
           event.type == "PushEvent"
         }.first
-        datetime = commit_hash.created_at.strftime("%m/%d/%Y at %I:%M%p")
+        datetime = commit_hash.created_at
         repo = commit_hash.repo.name.gsub(/.+\//,'')
         repo_url = "https://github.com/" + commit_hash.repo.name
         commit_url = "#{repo_url}/commit/#{commit_hash.payload.commits.last.sha}"

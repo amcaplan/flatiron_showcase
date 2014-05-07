@@ -1,4 +1,6 @@
 class Project < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
+
   has_many :user_projects, dependent: :destroy
   has_many :users, through: :user_projects
   has_many :project_app_types, dependent: :destroy
@@ -112,8 +114,8 @@ class Project < ActiveRecord::Base
 
   def last_commit
     begin
-      self.client.commits(self.name).first.commit.author.date.
-        strftime("%m/%d/%Y at %I:%M%p")
+      last_time = self.client.commits(self.name).first.commit.author.date
+      time_ago_in_words(last_time) + " ago"
     rescue
       "No Commits Yet"
     end
