@@ -3,7 +3,7 @@ var intervalTracker = {};
 var customizeGitShoes = function(){
   if (jQuery("#feedback-container")[0]) {
     // Move gitShoes to the left side
-    jQuery("#feedback-container").css('right', 'none').css('left','30px');
+    jQuery("#feedback-container").css('right', 'none').css('left','5px')
     jQuery("#gitshoes-button").css('float', 'left');
 
     // Customize gitShoes text
