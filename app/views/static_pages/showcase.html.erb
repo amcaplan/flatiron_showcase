@@ -1,4 +1,6 @@
 <%= render partial: 'layouts/document_beginning' %>
+<%= javascript_include_tag 'showcase' %>
+
 <section id="tp-banner-container" class="fullwidthbanner-container tp-banner-container hidden-xs">
   <div class="tp-banner">
       <ul>
@@ -69,45 +71,4 @@
       <div class="tp-bannertimer tp-bottom"></div>
   </div>
 </section>
-<script type="text/javascript">
-
-  var revapi;
-
-  jQuery(document).ready(function() {
-
-    revapi = jQuery('.tp-banner').revolution({
-      
-      delay:15000,
-      startwidth:1170,
-      startheight: 800,
-      hideThumbs:10,
-      fullWidth:"off",
-      fullScreen:"on",
-      fullScreenOffsetContainer: "",
-
-      navigationType: "none",
-      navigationArrows: "nexttobullet",
-      navigationStyle: "round",
-      navigationVAlign: "bottom",
-      navigationHOffset: 30,
-      navigationVOffset: 30,
-
-      soloArrowLeftHalign: "left",
-      soloArrowLeftValign: "center",
-      soloArrowLeftHOffset: 20,
-      soloArrowLeftVOffset: 0,
-
-
-      soloArrowRightHalign: "right",
-      soloArrowRightValign: "center",
-      soloArrowRightHOffset: 20,
-      soloArrowRightVOffset: 0,
-
-      shadow: "none"
-
-    });
-
-  }); //ready
-
-</script>
 <%= render partial: 'layouts/document_end' %>
