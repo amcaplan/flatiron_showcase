@@ -3,12 +3,5 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .student-name {
-    background-color: #2ecc71;
-    padding: 20px;
-    color: #ffffff;
-    text-align: center;
-    text-transform: uppercase;
-    font-family: 'Montserrat', sans-serif;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease;
+    max-width: 460px;
 }
