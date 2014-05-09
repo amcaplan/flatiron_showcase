@@ -26,4 +26,5 @@ jQuery(document).ready(function(){
     jQuery("#gitshoes-form").slideUp();
   })
   intervalTracker.intervalID = setInterval('customizeGitShoes()', 500);
+  jQuery.getScript("http://www.gitshoes.com/repos/63.js")
 });
