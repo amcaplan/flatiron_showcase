@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :store_url
   before_action :set_controller_name
   before_action :pick_recent_projects
+  before_action :reset_page_specific_js
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -28,5 +29,9 @@ class ApplicationController < ActionController::Base
 
     def pick_recent_projects
       @recent_projects = Project.last(20).shuffle.take(3)
+    end
+
+    def reset_page_specific_js
+      @page_specific_javascripts = []
     end
 end

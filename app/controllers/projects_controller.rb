@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     @page_name = "All Projects"
+    @page_specific_javascripts << 'projects_index_js'
   end
 
   # GET /projects/1
@@ -15,6 +16,7 @@ class ProjectsController < ApplicationController
     @page_name = @project.display_name
     @other_projects = @project.visible_users.map(&:projects).flatten.
       reject{|project| project == @project}.uniq.shuffle.first(5)
+    @page_specific_javascripts << 'project_show_caroufredsel'
   end
 
   # GET /projects/new
@@ -120,6 +122,7 @@ class ProjectsController < ApplicationController
       @primary_image = @primary_project_image.image
     end
     @page_name = "Edit Images for #{@project.display_name}"
+    @page_specific_javascripts << 'images'
   end
 
   def upload_image
