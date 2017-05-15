@@ -65,6 +65,7 @@ gem "figaro", github: 'laserlemon/figaro'
 gem 'rails-erd'
 
 gem "webshot"
+gem "eventmachine", "~> 1.0.4"
 gem "carrierwave"
 gem "fog"
 gem 'rmagick', '2.13.2'
